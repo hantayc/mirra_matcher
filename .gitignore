@@ -1,5 +1,7 @@
 # CSV Files
 *.csv
+# Add Virtual Environment Folder
+mirra_env/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
