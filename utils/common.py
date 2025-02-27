@@ -28,13 +28,11 @@ def footer(st):
     # Footer
     st.markdown('<div class="footer">© 2025 Mirra Matcher. All rights reserved.</div>', unsafe_allow_html=True)
 
-def backgroundImage(st, class_name, img_name):
-    image_base64 = img_to_bytes(img_name)
-    st.markdown("<style>" \
+def backgroundImage(class_name, img_name):
+    return "<style>" \
             "." + class_name + " {" \
             "   background-image: url('data:image/png;base64," + img_to_bytes(img_name) + "');"  \
-            "}</style>" \
-        "<div class='bg-image " + class_name + "'></div>", unsafe_allow_html=True)
+            "}</style>";
 
 # Function to extract text from PDF
 def extract_text_from_pdf(pdf_file):
