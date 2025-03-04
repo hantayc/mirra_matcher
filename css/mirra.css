@@ -1,4 +1,9 @@
+.stApp header {
+    display: none;
+}
+
 .stMainBlockContainer {
+    padding-top: 0;
     padding-left: 0;
     padding-right: 0
 }

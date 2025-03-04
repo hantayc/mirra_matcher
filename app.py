@@ -1,18 +1,7 @@
 import streamlit as st
 import utils.common as com
 
-cities_states = [
-    "New York, NY",
-    "Los Angeles, CA",
-    "Chicago, IL",
-    "Houston, TX",
-    "Phoenix, AZ",
-    "Philadelphia, PA",
-    "San Antonio, TX",
-    "San Diego, CA",
-    "Dallas, TX",
-    "San Jose, CA"
-]
+cities_states = com.read_city_state_data()
 
 # Streamlit app
 def main():
@@ -31,7 +20,7 @@ def main():
     with header:
         header.markdown(com.backgroundImage('st-key-header', 'banner.png'), unsafe_allow_html=True)
         logo, banner, team, profile = header.columns([2,12,1,1])
-        logo.image('./images/logo.png', use_container_width = True)
+        logo.image('./images/logo.png', width=180)
         team.page_link("pages/team.py", label="Meet My Team")
         # team.markdown('<div class="meet-my-team">Meet My Team</div>', unsafe_allow_html=True)
         profile.page_link("pages/login.py", label="login")
@@ -62,13 +51,13 @@ def main():
     with middle:
         job_title = middle.text_input('Job Title: ')
         exp_level = middle.selectbox("Experience Level:", ('', 'Entry-level', 'Mid-level', 'Senior'))
-        domain = middle.selectbox("Industry or Domain:", ('', "Tech", "Finance", "Healthcare"))
+        domain = middle.selectbox("Industry or Domain:", ('', "Agriculture", "Education", "Finance", "Healthcare", "Information Technology", "Manufacturing", "Marketing", "Retail", "Other"))
 
     with right:
-        location = right.text_input('Location: ')
+        location = right.selectbox('Location: ', cities_states)
         salary_range_from, salary_range_to = st.slider("Salary Range:", 50000, 500000, value=(50000, 50000))
         visa_sponsor = right.radio('Visa Sponsorship:', ('Yes', 'No'), index=None, horizontal=True, key="visa_sponsor")
-
+    
     if keywords:
         filter_dict['keywords'] = keywords
     if emp_type:

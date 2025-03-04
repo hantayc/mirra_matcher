@@ -3,6 +3,7 @@ import base64
 import os
 import sys
 import fitz  # PyMuPDF
+import pandas as pd
 
 home_directory = os.path.dirname(os.path.abspath(sys.argv[0])) 
 def includeCss(st, filename):
@@ -13,20 +14,17 @@ def img_to_bytes(img_name):
     img_bytes = Path(f'{home_directory}/images/{img_name}').read_bytes()
     return base64.b64encode(img_bytes).decode()
 
-def header(st, label = '', link = ''):
-    # Setting the logo and login link
-    image_base64 = img_to_bytes('logo.png')
-    # Logo and login link at the top
-    st.markdown(f"""
-        <div class="top-container">
-            <img src="data:image/png;base64,{image_base64}" alt="Logo" width="100">
-            <a href="login" class="login-link" target="_self">Log In</a>
-        </div>
-    """, unsafe_allow_html=True)
+def read_city_state_data():
+    data = pd.read_csv('./data/uscities.txt', sep='\t')
+    if "city" in data.columns and "state_name" in data.columns:
+        # Create a list of strings in the format "City, State"
+        city_state_list = [f"{row['city']}, {row['state_name']}" for _, row in data.iterrows()]
+        city_state_list.insert(0, "")
+    else:
+        city_state_list = [""]
 
-def footer(st):
-    # Footer
-    st.markdown('<div class="footer">© 2025 Mirra Matcher. All rights reserved.</div>', unsafe_allow_html=True)
+    return city_state_list
+
 
 def backgroundImage(class_name, img_name):
     return "<style>" \
