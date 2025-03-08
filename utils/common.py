@@ -60,3 +60,9 @@ def display_job_postings(st):
     html += "</table>"
     st.markdown(html, unsafe_allow_html=True)
 
+def loadFont():
+    return """
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        </style>
+        """
