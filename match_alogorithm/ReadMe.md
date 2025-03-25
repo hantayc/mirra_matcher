@@ -39,7 +39,7 @@ The algorithm leverages pre-trained sentence transformers to compute semantic si
 ├── responsibilities_match_score.py# Functions for computing responsibilities match scores.
 ├── merge_scores.py                # Functions for merging score dictionaries by job_id.
 ├── overall_scores.py              # Aggregates scores from all sections (skills, education, responsibilities, credentials, background) into overall match scores.
-
+```
 ## Project Overview
 
 The matching algorithm is designed to compare a candidate’s resume (in JSON format) to a job description (also in JSON format) across multiple dimensions:
@@ -80,7 +80,7 @@ The matching algorithm is designed to compare a candidate’s resume (in JSON fo
    - **Usage:**  
      The function `calculate_overall_match_score()` in `overall_scores.py` collects all section scores (ignoring sections with no requirements by returning `None`) and computes a final overall score.  
      Additionally, the `merge_scores.py` module provides a helper to merge score dictionaries (keyed by job_id) across various sections.
-```
+
 ## How to Use the Functions
 
 ### Setting Up
