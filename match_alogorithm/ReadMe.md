@@ -5,6 +5,7 @@ This project implements a matching algorithm that uses natural language processi
 The algorithm leverages pre-trained sentence transformers to compute semantic similarity scores between candidate and job description elements, and then aggregates these scores into overall match scores.
 
 ## Directory Structure
+```
 .
 ├── ReadMe.md
 ├── archive
@@ -79,7 +80,7 @@ The matching algorithm is designed to compare a candidate’s resume (in JSON fo
    - **Usage:**  
      The function `calculate_overall_match_score()` in `overall_scores.py` collects all section scores (ignoring sections with no requirements by returning `None`) and computes a final overall score.  
      Additionally, the `merge_scores.py` module provides a helper to merge score dictionaries (keyed by job_id) across various sections.
-
+```
 ## How to Use the Functions
 
 ### Setting Up
