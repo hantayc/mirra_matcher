@@ -8,11 +8,21 @@ embedding_cache = {}
 
 
 def get_embedding(text: str):
-    text = text.strip()
+    try:
+        text = text.strip()
+    except Exception as e:
+        print("Error during strip():", text, "of type", type(text))
+        traceback.print_exc()
+        raise e
     if text in embedding_cache:
         return embedding_cache[text]
     else:
-        emb = sentence_model.encode(text, convert_to_tensor=True)
+        try:
+            emb = sentence_model.encode(text, convert_to_tensor=True)
+        except Exception as e:
+            print("Error during encoding text:", text)
+            traceback.print_exc()
+            raise e
         embedding_cache[text] = emb
         return emb
 
