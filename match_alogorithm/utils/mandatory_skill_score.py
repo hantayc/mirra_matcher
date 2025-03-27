@@ -21,6 +21,8 @@ def extract_resume_skills(resume_json):
 
 def compute_required_skill_similarity(candidate_skill, job_required_skill):
     # Normalize candidate_skill into groups.
+    # This ensures that whether candidate_skill is a single string,
+    # a flat list, or already a list of lists, we get a list of groups.
     if isinstance(candidate_skill, str):
         candidate_groups = [[candidate_skill]]
     elif isinstance(candidate_skill, list):
@@ -32,6 +34,7 @@ def compute_required_skill_similarity(candidate_skill, job_required_skill):
         candidate_groups = []
 
     # Normalize job_required_skill into groups.
+    # Similarly, we ensure job_required_skill is in the form of a list of groups.
     if isinstance(job_required_skill, list) and job_required_skill:
         if not isinstance(job_required_skill[0], list):
             job_required_groups = [job_required_skill]
@@ -40,36 +43,39 @@ def compute_required_skill_similarity(candidate_skill, job_required_skill):
     else:
         job_required_groups = []
 
+    # Return None if any of the required data is missing.
     if not candidate_groups or not job_required_groups:
         return None  # Missing requirements
 
     best_overall = 0.0
+    # Iterate over each job requirement group.
     for req_group in job_required_groups:
-        # print(f"\nProcessing Job Requirement Group: {req_group}")
         best_for_req = 0.0
         for cand_group in candidate_groups:
-            candidate_term_avgs = []
-            # print(f"  Evaluating Candidate Group: {cand_group}")
+            candidate_term_scores = []
             for cand_term in cand_group:
                 sims = []
+                # Compute similarity for each candidate term against all terms in the requirement group.
                 for req_term in req_group:
                     sim = nlp_similarity_cached(cand_term, req_term)
-                    # print(f"    '{cand_term}' vs. '{req_term}': similarity = {sim}")
                     sims.append(sim)
                 if sims:
-                    avg_sim = sum(sims) / len(sims)
-                    # print(f"    => Average similarity for '{cand_term}': {avg_sim}")
-                    candidate_term_avgs.append(avg_sim)
-            if candidate_term_avgs:
-                group_avg = max(candidate_term_avgs)
-                # print(f"  => Best average for group {cand_group}: {group_avg}")
-                if group_avg == 1.0:
+                    # Update 3/26
+                    if len(req_group) == 1:
+                        term_score = max(sims)
+                    else:
+                        term_score = sum(sims) / len(sims)
+                    candidate_term_scores.append(term_score)
+            if candidate_term_scores:
+                # For the candidate group, take the maximum term score.
+                group_score = max(candidate_term_scores)
+                # If a perfect match is found, return 1.0 immediately.
+                if group_score == 1.0:
                     return 1.0
-                if group_avg > best_for_req:
-                    best_for_req = group_avg
+                if group_score > best_for_req:
+                    best_for_req = group_score
         if best_for_req > best_overall:
             best_overall = best_for_req
-    # print(f"\n   --> Best overall similarity: {best_overall}")
     return best_overall
 
 
