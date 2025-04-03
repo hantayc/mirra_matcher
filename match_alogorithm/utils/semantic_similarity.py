@@ -1,19 +1,26 @@
 from sentence_transformers import util  # Import the util module for cosine similarity
 from .load_embedding_fn import load_sentence_model
-
+import traceback
 
 sentence_model = load_sentence_model()
 
 embedding_cache = {}
 
 
-def get_embedding(text: str):
+def get_embedding(text):
     try:
+        # If text is a list, join it into a single string
+        if isinstance(text, list):
+            print("Warning: text is a list. Joining elements...")
+            text = " ".join([str(t) for t in text])
+
         text = text.strip()
+
     except Exception as e:
         print("Error during strip():", text, "of type", type(text))
         traceback.print_exc()
         raise e
+
     if text in embedding_cache:
         return embedding_cache[text]
     else:
