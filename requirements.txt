@@ -1,4 +1,9 @@
 boto3
 streamlit
 PyMuPDF
-csv
+pinecone
+numpy
+openai
+openpyxl
+sentence_transformers
+asyncio
