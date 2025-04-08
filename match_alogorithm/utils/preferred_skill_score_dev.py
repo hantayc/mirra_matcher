@@ -1,5 +1,5 @@
 import math
-from utils.semantic_similarity import nlp_similarity_cached
+from match_alogorithm.utils.semantic_similarity import nlp_similarity_cached
 
 
 def safe_average(values):

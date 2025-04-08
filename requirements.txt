@@ -6,4 +6,4 @@ numpy
 openai
 openpyxl
 sentence_transformers
-asyncio
+torch

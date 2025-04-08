@@ -21,7 +21,7 @@ Example usage at bottom.
 """
 
 import json
-from utils.semantic_similarity import (
+from match_alogorithm.utils.semantic_similarity import (
     nlp_similarity_cached,
 )  # Adjust import path as needed
 

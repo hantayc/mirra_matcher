@@ -1,9 +1,11 @@
+import boto3
 from pathlib import Path
+import pandas as pd
 import base64
 import os
+from io import BytesIO
 import sys
 import fitz  # PyMuPDF
-import pandas as pd
 
 home_directory = os.path.dirname(os.path.abspath(sys.argv[0])) 
 def includeCss(st, filename):
@@ -13,18 +15,6 @@ def includeCss(st, filename):
 def img_to_bytes(img_name):
     img_bytes = Path(f'{home_directory}/images/{img_name}').read_bytes()
     return base64.b64encode(img_bytes).decode()
-
-def read_city_state_data():
-    data = pd.read_csv('./data/uscities.txt', sep='\t')
-    if "city" in data.columns and "state_name" in data.columns:
-        # Create a list of strings in the format "City, State"
-        city_state_list = [f"{row['city']}, {row['state_name']}" for _, row in data.iterrows()]
-        city_state_list.insert(0, "")
-    else:
-        city_state_list = [""]
-
-    return city_state_list
-
 
 def backgroundImage(class_name, img_name):
     return "<style>" \
@@ -64,5 +54,83 @@ def loadFont():
     return """
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&display=swap'); 
         </style>
         """
+def logger(msg):
+    os.write(1,f"{msg}\n".encode('utf-8'))
+
+def find_record_by_ids(vdb_list, file_path):
+    df = pd.read_excel(file_path)
+
+    job_list = json.loads('[]')
+    
+    for job in vdb_list:
+        job_id = job['id']
+        post_json = json.loads(find_record_by_id(job_id[4:], df))
+        post_json['job_id'] = job_id
+        job_list.append(post_json)
+
+    return job_list
+
+
+def read_excel_from_s3(bucket, key):
+    """
+    Helper function that reads an Excel file from S3 into a Pandas DataFrame.
+    """
+    s3 = boto3.client('s3')
+    response = s3.get_object(Bucket=bucket, Key=key)
+    # response['Body'] is a stream; wrap it with BytesIO before passing to pandas
+    return pd.read_excel(BytesIO(response['Body'].read()))
+
+def find_record_by_id(target_id, df):
+    """
+    Reads data from an Excel file, and finds a record by ID.
+
+    Args:
+        file_path (str): The path to the Excel file.
+        sheet_name (str): The name of the sheet to read.
+        id_column_name (str): The name of the column containing the IDs.
+        target_id: The ID to search for.
+
+    Returns:
+        pandas.Series or None: The record as a pandas Series if found, otherwise None.
+    """
+    record = df[df['id'] == target_id].squeeze()
+    if record.empty:
+        return None
+    return record['extracted']
+    
+def getJob(job, isSelected):
+    details = job["details"]
+    if isSelected:
+        sel_class = "selected"
+    else:
+        sel_class = ""
+    job_html = f"""<div class="job-row {sel_class}" selected={isSelected}><a href="match?a={job['job_id']}" target="_self" class="job-detail-link">
+            <div class="job-title">{'<br>'.join(details['job_title_base'])}</div>
+            <div class="job-company">at {'<br>'.join(details['company_name'])}</div>
+            <div class="job-location">Location: {'<br>'.join([location['city'] + ", " + location['state'] for location in details['location']])}</div>
+            <div class="job-scores">Overall Scores: {job['match_scores']['overall_score']*100:.0f}%</div></a></div>
+    """
+    logger(job_html)
+
+    return job_html
+
+import json
+
+def find_record_by_jobid(json_data, job_id):
+    """
+    Finds a record in a JSON-like data structure where a specified key has a specific value.
+
+    Args:
+        json_data: The JSON data (dict or list) to search within.
+        job_id: The value that the key should have for a match.
+
+    Returns:
+        The record (dict) if found, otherwise None.
+    """
+    for item in json_data:
+        if item["job_id"] == job_id:
+            return item
+    return None

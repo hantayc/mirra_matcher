@@ -27,7 +27,7 @@ steps = [{
 def main():
     st.set_page_config(page_title="MIRRA Matcher - How it works", layout="wide")
     st.markdown(com.loadFont(), unsafe_allow_html=True)
-    com.includeCss(st, 'mirra.css')
+    com.includeCss(st, 'works.css')
 
     header = st.container(key='works-header')
     _, middle, _ = st.columns([3,4,3])

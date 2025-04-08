@@ -2,7 +2,7 @@ import streamlit as st
 import utils.common as com
 
 members = [{
-    'pic': 'cat2.png',
+    'pic': 'cyrus.jpg',
     'bio': 'uhiurehgidurhgdiurhfuidrhfiushfuisehfusihfusihdfusihfisuhfsuidfhsiudfhsdiuhfsdiufhsidufhsdiufhsudifhsiudfhsiudfhsiufhsiudhfsudifhsidufhsiudfhsiudfhisduhfisduhfsdiufhsiudfhisudfhsiudfhsduifh.'
 },{
     'pic': 'tay.jpg',
@@ -22,7 +22,7 @@ members = [{
 def main():
     st.set_page_config(page_title="MIRRA Matcher - Meet the team", layout="wide")
     st.markdown(com.loadFont(), unsafe_allow_html=True)
-    com.includeCss(st, 'mirra.css')
+    com.includeCss(st, 'team.css')
 
     team_container = st.container(key='team_container')
     header = team_container.container(key='team-header')

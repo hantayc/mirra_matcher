@@ -1,5 +1,6 @@
 import os
 import traceback
+import streamlit as st
 import torch
 
 from sentence_transformers import util
@@ -7,20 +8,20 @@ from pinecone import Pinecone
 
 from utils.load_embedding_fn import load_sentence_model
 
-PINECONE_API_KEY = (
-    "pcsk_7VkStS_ifR3SH9d1MSkkju9kP7DUt5M16CpNyzi9dwNBm7iUqyXmbKZWQbC55ZzfSEaAB"
-)
-PINECONE_ENVIRONMENT = "us-east-1"
-PINECONE_INDEX_NAME = "sample-100-strings"  # Must match an existing index or be created
+try:
+    # Instantiate Pinecone client and get the index
+    pc = Pinecone(api_key=st.secrets.pinecone.api_key, environment=st.secrets.pinecone.aws_regionT)
+    pinecone_index = pc.Index(st.secrets.pinecone.index_name)
+    print("Pinecone connected successfully!")
+except Exception as e:
+    # If any error occurs, print it and fallback to None
+    print("Error connecting to Pinecone, proceeding without it:", str(e))
+    pc = None
+    pinecone_index = None
 
-# Instantiate Pinecone client
-pc = Pinecone(api_key=PINECONE_API_KEY, environment=PINECONE_ENVIRONMENT)
-
-# Now get a handle to your Pinecone index
-pinecone_index = pc.Index(PINECONE_INDEX_NAME)
-
-# Load your SentenceTransformer model
+# Always load the SentenceTransformer model
 sentence_model = load_sentence_model()
 
-# Local cache to prevent repeated fetches in the same session
+# Create local caches for embeddings and similarities
 embedding_cache = {}
+similarity_cache = {}

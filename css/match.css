@@ -1,0 +1,283 @@
+.stApp header {
+    display: none;
+}
+
+.stMainBlockContainer>div>div {
+    min-height: 100vh;
+}
+
+.stMainBlockContainer>div>div>div>div:last-child {
+    margin-top: auto;
+}
+
+.stMainBlockContainer {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+}
+
+h1 {
+    font-family: montserrat, sans-serif !important;
+}
+
+.stVerticalBlock {
+    row-gap: 0;
+}
+
+.stPageLink p {
+    font-size: 14px;
+}
+
+.st-key-header {
+    padding: 1rem;
+}
+
+.st-key-footer .stMarkdown>div {
+    margin-bottom: 0;
+}
+
+.footer {
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 1rem 0.5rem 10rem;
+    background-color: #00267D;
+    color: white;
+    font-size:1.5rem;
+}
+.copyright {
+    font-size:0.8rem;
+    float: right;
+    margin-top: 1.5rem;
+}
+
+.st-key-match-header {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    transform: translate3d(0px, 0px, 0px);
+    padding: 0.2rem 0 0.2rem 0
+}
+
+.st-key-match-header:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: .6;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: -webkit-linear-gradient(-270deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .6) 50%, rgba(0, 0, 0, 0) 100%);
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .6) 50%, rgba(0, 0, 0, 0) 100%);
+}
+
+.st-key-title-container {
+    z-index: 200;
+}
+
+.st-key-title-container .stText div {
+    margin-top: 1rem;
+    padding: 0;
+    max-height: 4.5em;
+    color: rgba(255, 255, 255, 1);
+    font-family: montserrat, sans-serif;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 300;
+    text-transform: none;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    padding-top: 6rem;
+    padding-left: 16.4rem;
+    z-index:200;
+}
+
+.gradient-overlay {
+    position: absolute;
+    box-sizing: border-box;
+    height: 100vh;
+    min-height: 0;
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0.50) 50%, rgba(0, 0, 0, 0.25) 75%, rgba(0, 0, 0, 0) 100%);
+    background-color: rgba(0, 0, 0, 0);
+    right: 0%;
+    left: -5%;
+    z-index: 100;
+}
+
+#your-match-is-ready {
+    margin: 0 0 0 0;
+    padding: 0px 10em 0 9em;
+    max-height: 2em;
+    color: rgba(255, 255, 255, 1);
+    font-family: montserrat, sans-serif;
+    font-size: 74px;
+    font-style: normal;
+    font-weight: 100;
+    text-transform: none;
+    text-align: center;
+    line-height: 1.3;
+    letter-spacing: normal;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.st-key-match-header {
+    padding: 0.5rem 0 0 0;
+    margin-bottom: 0.5rem;
+}
+
+.st-key-match-header .stText>div {
+    margin: 30px 42em;
+    padding: 25px 10em 0 9em;
+    max-height: 0;
+    color: rgba(255, 255, 255, 1);
+    font-family: montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    text-transform: none;
+    text-align: center;
+    line-height: 1.3;
+    letter-spacing: normal;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.st-key-match-middle-container h3 {
+    padding-top: 1.5rem;
+    padding-bottom: 0;
+    font-family: montserrat, sans-serif;
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 400;
+    text-transform: none;
+    line-height: 1.4;
+    letter-spacing: normal;
+    color: rgba(48, 58, 115, 1);
+    text-align: center;
+}
+
+#match-results {
+    z-index: 0;
+    font-family: montserrat, sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 300;
+    text-transform: none;
+    text-align: center !important;
+    line-height: 1.4;
+    letter-spacing: normal;
+    color: rgba(48, 58, 115, 1);
+    text-align: left;
+}
+
+.overall_score_header {
+    font-family: montserrat, sans-serif;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: bold;
+    text-transform: none;
+    line-height: 1.5;
+    letter-spacing: normal;
+    overflow-wrap: break-word;
+    color: rgba(48, 58, 115, 1);
+    text-align: center;
+    padding: 2rem 0 1rem 0;
+}
+
+li.score_item, li.skill-item {
+    font-family: montserrat, sans-serif;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: rgba(48, 58, 115, 1);
+    margin-left: 5px;
+    margin-right: 0px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.score_header {
+    font-family: montserrat, sans-serif;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: bold;
+    text-transform: none;
+    line-height: 1.5;
+    letter-spacing: normal;
+    overflow-wrap: break-word;
+    color: rgba(48, 58, 115, 1);
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+}
+
+#job-location, .skill-title {
+    font-family: montserrat, sans-serif;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none;
+    line-height: 1.5;
+    letter-spacing: normal;
+    overflow-wrap: break-word;
+    color: rgba(48, 58, 115, 1);
+    padding-top: 2rem;
+}
+
+#location-label, .skill-title {
+    font-weight: bold;
+    padding-bottom: 2rem;
+}
+
+.st-key-match_result .stColumn {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.st-key-match_result button{
+    background-color: #00267D;
+    color: white;
+}
+
+.job-row {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(49, 51, 63, 0.2);
+}
+
+.job-row a { 
+    color: inherit; 
+    text-decoration: inherit;
+} 
+
+.job-row:hover {
+    background-color: lightgray;
+}
+
+.st-key-match-body div.stColumn:nth-child(2)>div>div>div>div:last-child {
+    padding: 0
+}
+
+.job-title {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.selected {
+    background-color: #C5EAFA;
+}
+
+.job-location {
+    color: gray;
+}
+
+.job-scores {
+    font-style: italic;
+}

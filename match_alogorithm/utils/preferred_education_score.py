@@ -1,7 +1,7 @@
 # preferred_education_score.py
 
 import json
-from utils.semantic_similarity import (
+from match_alogorithm.utils.semantic_similarity import (
     nlp_similarity_cached,
 )  # Ensure this module is accessible
 
