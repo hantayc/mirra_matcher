@@ -262,7 +262,7 @@ li.score_item, li.skill-item {
 }
 
 .st-key-match-body div.stColumn:nth-child(2)>div>div>div>div:last-child {
-    padding: 0
+    padding: 0;
 }
 
 .job-title {
@@ -280,4 +280,23 @@ li.score_item, li.skill-item {
 
 .job-scores {
     font-style: italic;
+}
+
+.st-key-match-body div.stColumn:nth-child(3)>div>div>div>div:last-child {
+    height: 0;
+}
+
+.score_pane_column {
+    float: left;
+    width: 33.33%;
+}
+
+.score_pane {
+    margin-top: 1rem;
+}
+  
+.score_pane:after {
+    content: "";
+    display: table;
+    clear: both;
 }

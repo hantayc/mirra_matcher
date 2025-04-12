@@ -1,25 +1,37 @@
-import traceback
 import torch
 from sentence_transformers import util
 from concurrent.futures import ThreadPoolExecutor, TimeoutError
 
-from init_pinecone import pinecone_index, sentence_model, embedding_cache
+from match_alogorithm.init_pinecone import pinecone_index, embedding_cache
 
-# Adjust this as needed
+from utils.embeddings import EmbeddingGenerator
+
+embedder = EmbeddingGenerator(
+    endpoint_name="e5-embeddings-huggingface",
+    region="us-east-1",           # e.g. "us-east-1"
+    embedding_dimension=1024            # match your model dimension
+)
+
+# GPU If Avail
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 PINECONE_FETCH_TIMEOUT = 30  # seconds
 
-# We assume the model is loaded on GPU. Optionally:
-device = sentence_model.device  # Use the device that the model is on
-
 def get_embedding(text: str):
+    """
+    Return the embedding of 'text' from:
+    1) local cache (if available),
+    2) Pinecone (if fetchable by ID),
+    3) otherwise, call your SageMaker endpoint via EmbeddingGenerator.
+    """
     text = text.strip()
-    
-    # Check local cache
+
+    # Check local cache first
     if text in embedding_cache:
         return embedding_cache[text]
 
-    # Attempt to fetch from Pinecone with a timeout
     fetch_result = None
+    # Attempt to fetch from Pinecone with a timeout
     if pinecone_index is not None:
         def fetch_pinecone_vector():
             return pinecone_index.fetch(ids=[text])
@@ -29,34 +41,35 @@ def get_embedding(text: str):
             try:
                 fetch_result = future.result(timeout=PINECONE_FETCH_TIMEOUT)
             except TimeoutError:
-                # Timed out, we'll skip Pinecone
                 fetch_result = None
             except Exception as e:
-                # Some other Pinecone/network error
                 print(f"Error while fetching from Pinecone: {e}")
                 fetch_result = None
 
-    # If Pinecone is unavailable, timed out, or returns empty,
-    # compute locally on GPU.
     if not fetch_result or not fetch_result.vectors:
-        emb_tensor = sentence_model.encode(text, convert_to_tensor=True)
-        embedding_cache[text] = emb_tensor  # keep on GPU
-        return embedding_cache[text]
+        emb_list = embedder.generate_embeddings([text])  # returns list of lists
+        if emb_list and len(emb_list) > 0:
+            emb_tensor = torch.tensor(emb_list[0], device=device)
+        else:
+            emb_tensor = torch.zeros(embedder.embedding_dimension, device=device)
+        
+        embedding_cache[text] = emb_tensor
+        return emb_tensor
     else:
-        # Found in Pinecone -> convert to GPU tensor using the model's device.
         fetched_vector = fetch_result.vectors[text].values
         emb_tensor = torch.tensor(fetched_vector, device=device)
         embedding_cache[text] = emb_tensor
         return emb_tensor
 
 def cosine_similarity(vec1, vec2):
-    # Both vectors should be on GPU (or on the same device)
     return util.cos_sim(vec1, vec2)
 
 def compute_semantic_similarity(text1: str, text2: str) -> float:
     emb1 = get_embedding(text1)
     emb2 = get_embedding(text2)
     raw_similarity = float(util.cos_sim(emb1, emb2))
+
+    # The same normalization you had before (optional)
     normalized = (raw_similarity - 0.7) / 0.3
     return max(0.0, min(1.0, normalized))
 

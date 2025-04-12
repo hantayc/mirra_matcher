@@ -129,12 +129,12 @@ def calculate_responsibilities_scores(job_json_list, resume_json):
     return results
 
 
-if __name__ == "__main__":
-    # Example usage:
-    # Replace these with your actual list of job JSON objects (each with a "job_id" key)
-    # and a resume JSON object.
-    job_json_list = []  # List of job JSON objects
-    resume_json = {}  # Your resume JSON object
-    results = calculate_responsibilities_scores(job_json_list, resume_json)
-    print("Responsibilities Scores for Jobs:")
-    print(results)
+# if __name__ == "__main__":
+#     # Example usage:
+#     # Replace these with your actual list of job JSON objects (each with a "job_id" key)
+#     # and a resume JSON object.
+#     job_json_list = []  # List of job JSON objects
+#     resume_json = {}  # Your resume JSON object
+#     results = calculate_responsibilities_scores(job_json_list, resume_json)
+#     print("Responsibilities Scores for Jobs:")
+#     print(results)

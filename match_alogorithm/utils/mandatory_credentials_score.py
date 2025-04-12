@@ -165,21 +165,21 @@ def calculate_mandatory_credentials_scores(job_json_list, resume_json):
     return results
 
 
-if __name__ == "__main__":
-    # Demo usage:
-    example_job = {
-        "job_id": "job-456",
-        "mandatory": {"credentials": [{"credential": [["CISSP"], ["CISM"]]}]},
-    }
-    example_resume = {
-        "credentials": [
-            {"credential": ["CISM"]},
-            {"credential": ["AWS Certified Solutions Architect"]},
-        ]
-    }
-    single_score = calculate_mandatory_credentials_score(example_job, example_resume)
-    print("Mandatory Credentials Score (single example):", single_score)
+# if __name__ == "__main__":
+#     # Demo usage:
+#     example_job = {
+#         "job_id": "job-456",
+#         "mandatory": {"credentials": [{"credential": [["CISSP"], ["CISM"]]}]},
+#     }
+#     example_resume = {
+#         "credentials": [
+#             {"credential": ["CISM"]},
+#             {"credential": ["AWS Certified Solutions Architect"]},
+#         ]
+#     }
+#     single_score = calculate_mandatory_credentials_score(example_job, example_resume)
+#     print("Mandatory Credentials Score (single example):", single_score)
 
-    job_list = [example_job]
-    batch_scores = calculate_mandatory_credentials_scores(job_list, example_resume)
-    print("\nBatch Scores:\n", batch_scores)
+#     job_list = [example_job]
+#     batch_scores = calculate_mandatory_credentials_scores(job_list, example_resume)
+#     print("\nBatch Scores:\n", batch_scores)

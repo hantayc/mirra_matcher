@@ -1,15 +1,12 @@
 import streamlit as st
 import pandas as pd
 import json
-import asyncio
 import utils.common as com
 from utils.resume_extractor import resume_extractor
 from utils.pinecone_database import PineconeDatabase
-from logging import getLogger
-import os 
 from match_alogorithm.calculate_match_score import calculate_match_score
 
-@st.cache_resource
+@st.cache_data
 def read_city_state_data():
     data = pd.read_csv('./data/uscities.txt', sep='\t')
     if "city" in data.columns and "state_name" in data.columns:
@@ -24,23 +21,27 @@ def read_city_state_data():
 @st.cache_resource
 def retrievePineconeIndex():
     pc = PineconeDatabase(st.secrets.pinecone.api_key, st.secrets.pinecone.index_name, st.secrets.pinecone.aws_region, st.secrets.pinecone.sagemaker_endpoint)
-    return pc, pc.connect_to_pinecone()
+    pc.connect_to_pinecone()
+    return pc
 
 @st.cache_resource
 def retrieveOpenAIClient():
+    print("calling retrieveOpenAIClient")
     return resume_extractor(st.secrets.openai.api_key)
 
 # Streamlit app
 def main():
         # add tab title
     st.set_page_config(page_title="MIRRA Matcher", layout="wide")
+    com.includeCss(st, 'mirra.css')
     com.logger('Start MIRRA Matcher')
     cities_states = read_city_state_data()
-    pc, index = retrievePineconeIndex()
+    pc = retrievePineconeIndex()
     client = retrieveOpenAIClient()
-
-    com.includeCss(st, 'mirra.css')
-
+    if 'resume_filename' not in st.session_state:
+        st.session_state['resume_filename'] = ''
+    if "disabled" not in st.session_state:
+        st.session_state["disabled"] = False
     # add layout
     header = st.container(key='header')
     uploader = st.container(key='uploader')
@@ -51,11 +52,11 @@ def main():
     # add header
     with header:
         header.markdown(com.backgroundImage('st-key-header', 'banner.png'), unsafe_allow_html=True)
-        logo, banner, team, profile = header.columns([2,12,1,1])
+        logo, banner, team, profile = header.columns([2, 12, 1, 1])
         logo.image('./images/logo.png', width=180)
         team.page_link("pages/team.py", label="Meet My Team")
         profile.page_link("pages/login.py", label="login")
-    
+
     with banner:
         menu = banner.container(key="menu")
         why_mirra, how_it_works, other = menu.columns([1,1,8])
@@ -64,30 +65,43 @@ def main():
         banner.markdown('<div class="project_name">Matching Intelligence for <span class="project_name_em">Resume & Role Alignment</span></div>', unsafe_allow_html=True)
 
     with uploader:
-        _, file_center, _ = uploader.columns([1,4,1])
-        pdf_file = file_center.file_uploader("Finding your new job starts here.", type="pdf", key='pdf-uploader')
+        _, file_center, _ = uploader.columns([1, 4, 1])
+        pdf_file = file_center.file_uploader("Finding your new job starts here.", type="pdf", key='pdf-uploader', disabled=st.session_state.disabled)
 
-    if pdf_file is not None:
+    def retrieve_resume_in_json(text):
+        extracted_json = client.process_resume_to_json(text)
+        st.session_state['resume_json'] = extracted_json
+        print(st.session_state['resume_json'])
+    
+    if pdf_file is not None and st.session_state['resume_filename'] != pdf_file.name:
+        print("start resume extraction...")
+        if 'resume_json' in st.session_state:
+            del st.session_state['resume_json']
+        st.session_state['resume_filename'] = pdf_file.name
         extracted_text = com.extract_text_from_pdf(pdf_file)
-        extracted_json = client.process_resume_to_json(extracted_text)
+        retrieve_resume_in_json(extracted_text)
+        # task_thread = threading.Thread(target=retrieve_resume_in_json, args=(extracted_text,))
+        # task_thread.start()
+        # task_thread.join()
+        st.session_state["disabled"] = False
 
     with filter:
         filter.markdown('<div class="filter-description">Set Your Filters, Then Click \'Start Match\' to Discover Your Best-Fit Roles.</div>', unsafe_allow_html=True)
         left, middle, right = st.columns([1,1,1])
 
     with left:
-        keywords = left.text_input('Job Title: ')
-        exp_level = middle.selectbox("Experience Level:", ('', 'Entry-level', 'Mid-level', 'Senior'))
-        post_dt = left.selectbox("Date Posted:", ('', "Last 24 hours", "Past Week", "Past Month")) 
+        keywords = left.text_input('Job Title: ', disabled=st.session_state.disabled)
+        exp_level = left.selectbox("Experience Level:", ('', 'Internship', 'Entry-level', 'Associate', 'Senior',  'Director'), disabled=st.session_state.disabled)
+        post_dt = left.selectbox("Date Posted:", ('', "Last 24 hours", "Past Week", "Past Month"), disabled=st.session_state.disabled) 
 
     with middle:
-        location = right.selectbox('Location: ', cities_states)
-        domain = middle.selectbox("Industry or Domain:", ('', "Agriculture", "Education", "Finance", "Healthcare", "Information Technology", "Manufacturing", "Marketing", "Retail", "Other"))
-        visa_sponsor = right.radio('Visa Sponsorship:', ('Yes', 'No'), index=None, horizontal=True, key="visa_sponsor")
+        location = middle.selectbox('Location: ', cities_states, disabled=st.session_state.disabled)
+        domain = middle.selectbox("Industry or Domain:", ('', "Agriculture", "Education", "Finance", "Healthcare", "Information Technology", "Manufacturing", "Marketing", "Retail", "Other"), disabled=st.session_state.disabled)
+        visa_sponsor = middle.radio('Visa Sponsorship:', ('Yes', 'No'), index=None, horizontal=True, key="visa_sponsor", disabled=st.session_state.disabled)
 
     with right:
-        emp_type = left.selectbox("Employment Type:", ('', "Full-time", "Part-time", "Contract", "Internship"))
-        salary_range_from, salary_range_to = st.slider("Salary Range:", 50000, 500000, value=(50000, 50000))
+        emp_type = right.selectbox("Employment Type:", ('', "Full-time", "Part-time", "Contract"), disabled=st.session_state.disabled)
+        salary_range_from, salary_range_to = right.slider("Salary Range:", 50000, 500000, value=(50000, 50000), disabled=st.session_state.disabled)
     
     if emp_type:
         filter_dict['emp_type'] = {'$eq': emp_type}
@@ -107,25 +121,36 @@ def main():
         filter_dict['visa_sponsor'] = {'$eq': visa_sponsor}
 
     with middle:
-        if(middle.form_submit_button("Start Match")):
-            # if st.session_state['resume_ready']:
-            if index:
-                response = pc.search(index, keywords, filter_dict)
-                if st.secrets.aws.bucket_name:
-                    job_list = com.read_excel_from_s3(t.secrets.aws.bucket_name, t.secrets.aws.file_key)
-                else:
-                    job_list = com.find_record_by_ids(response, st.secrets.aws.path)
-                matches = calculate_match_score(job_list, extracted_json)
+        if(middle.form_submit_button("Start Match", disabled=st.session_state.disabled)):
+            if 'resume_json' in st.session_state:
 
-                if 'matches' not in st.session_state:
-                    matches = json.loads(matches)
-                    st.session_state['matches'] = matches
-                st.switch_page("pages/match.py")
-            # else:
-            #     resume_not_ready()
+                # Display the loading animation
+                with st.spinner("Looking for the best matches... Please wait!"):
+
+                    com.logger(filter_dict)
+                    response = pc.search(keywords, filter_dict)
+                    # response = json.loads(vdb_result)
+                    if st.secrets.aws.bucket_name:
+                        job_list = com.find_record_by_ids_from_s3(response, st.secrets.aws.bucket_name, st.secrets.aws.file_key)
+                    else:
+                        job_list = com.find_record_by_ids(response, st.secrets.aws.path)
+                    # print(job_list)
+                    resume = st.session_state['resume_json']
+                    com.logger(type(job_list))
+                    com.logger(type(resume))
+                    matches = calculate_match_score(job_desc_json_lst=job_list, candidate_resume_JSON=resume, parallel_processing=True)
+                    com.logger(type(matches))
+                    com.logger(matches)
+                    if matches:
+                        matches = json.dumps(matches)
+                        st.session_state['matches'] = matches
+                        st.switch_page("pages/match.py")
+            else:
+                print("Resume is not ready")
 
     with footer:
         footer.markdown('<div class="footer">Experience Smarter Job Searches with Our AI-Powered Precision. Find the Perfect Match Faster! <span class="copyright"> © 2025 Mirra Matcher. All rights reserved.</span></div>', unsafe_allow_html=True)
+    st.session_state["disabled"] = True
 
 if __name__ == "__main__":
     main()

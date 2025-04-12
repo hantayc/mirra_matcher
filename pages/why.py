@@ -7,6 +7,7 @@ def main():
     st.markdown(com.loadFont(), unsafe_allow_html=True)
     com.includeCss(st, 'why.css')
     st.markdown('<span class="gradient-overlay"></span>', unsafe_allow_html=True)
+    st.session_state["disabled"] = False
 
     header = st.container(key='why-header')
     _, middle, _ = st.columns([3,4,3])

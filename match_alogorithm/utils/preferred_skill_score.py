@@ -129,11 +129,11 @@ def calculate_preferred_skill_scores(job_json_list, resume_json):
     return results
 
 
-if __name__ == "__main__":
-    # Example usage:
-    # Replace these with your actual list of job JSON objects and a resume JSON object.
-    job_json_list = []  # List of job JSON objects with "job_id" defined
-    resume_json = {}  # Your resume JSON object
-    results = calculate_preferred_skill_scores(job_json_list, resume_json)
-    # print("Preferred Skill Scores for Jobs:")
-    print(results)
+# if __name__ == "__main__":
+#     # Example usage:
+#     # Replace these with your actual list of job JSON objects and a resume JSON object.
+#     job_json_list = []  # List of job JSON objects with "job_id" defined
+#     resume_json = {}  # Your resume JSON object
+#     results = calculate_preferred_skill_scores(job_json_list, resume_json)
+#     # print("Preferred Skill Scores for Jobs:")
+#     print(results)

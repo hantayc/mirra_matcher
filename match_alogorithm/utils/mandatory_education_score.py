@@ -234,10 +234,10 @@ def calculate_mandatory_education_scores(job_json_list, resume_json):
     return results
 
 
-if __name__ == "__main__":
-    # Example usage: replace with your actual data.
-    job_json_list = []  # List of job JSON objects
-    resume_json = {}  # Your resume JSON object
-    results = calculate_mandatory_education_scores(job_json_list, resume_json)
-    # print("Mandatory Education Scores for Jobs:")
-    # print(json.dumps(results, indent=4))
+# if __name__ == "__main__":
+#     # Example usage: replace with your actual data.
+#     job_json_list = []  # List of job JSON objects
+#     resume_json = {}  # Your resume JSON object
+#     results = calculate_mandatory_education_scores(job_json_list, resume_json)
+#     # print("Mandatory Education Scores for Jobs:")
+#     # print(json.dumps(results, indent=4))

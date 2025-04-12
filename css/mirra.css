@@ -111,13 +111,13 @@ h1 {
 }
 
 .stForm .st-b6 {
-    border-bottom-color: inherit;
+    border-color: inherit;
 }
 
 .stForm .st-b7 {
     background-color: white;
 }
-
+/* 
 .stForm .st-ak {
     border-top-width: 0;
 }
@@ -136,12 +136,13 @@ h1 {
 
 .stForm .st-au {
     border-bottom-left-radius: 0;
-}
+} */
 
 .stForm .stTextInput label, .stForm .stSelectbox label, .stForm .stSlider label, .stForm .stDateInput label, .stForm .stRadio label {
     float: left;
     padding-top: 0.5rem;
     padding-right: 1rem;
+    width: 150px;
 }
 
 .stForm .stTextInput label p, .stForm .stSelectbox label p, .stForm .stSlider label p, .stForm .stDateInput label p, .stForm .stRadio label p {
@@ -149,7 +150,7 @@ h1 {
 }
 
 .stForm .stTextInput div[data-baseweb="input"] {
-    max-width: 50%;
+    max-width: 69%;
 }
 
 .stForm .stDateInput .st-ah, .stSelectbox .st-ah {

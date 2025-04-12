@@ -1,11 +1,12 @@
 import json
-import datetime
+from datetime import datetime
 from openai import OpenAI
 
 class resume_extractor:
     def __init__(self, api_key):
         self.current_month_year = datetime.now().strftime("%B %Y")
         self.client = OpenAI(api_key =api_key)
+        print("Resume extractor is loaded...")
     
     def reformat_resume(self, resume):
         response = self.client.chat.completions.create(
@@ -33,6 +34,8 @@ class resume_extractor:
             frequency_penalty=0,
             presence_penalty=0
         )
+
+        print("reformat_resume is completed..")
 
         return response.choices[0].message.content
 
@@ -117,6 +120,7 @@ class resume_extractor:
             frequency_penalty=0,
             presence_penalty=0
         )
+        print("extract_resume_skills is completed..")
   
         return response.choices[0].message.content
 
@@ -318,6 +322,7 @@ class resume_extractor:
             frequency_penalty=0,
             presence_penalty=0
         )
+        print("extract_resume_info is completed..")
   
         return response.choices[0].message.content
     
@@ -334,6 +339,9 @@ class resume_extractor:
             skill_name = entry["skill"][0] if entry["skill"] else "Unknown Skill"
             years = entry.get("years", 0)
             lines.append(f"- {skill_name} ({years} years)")
+
+        print("format_skills_as_bullets is completed..")
+        
         return "\n".join(lines)
 
     def replace_hard_skills_section(self, resume_text, new_hard_skills_section):
@@ -362,6 +370,8 @@ class resume_extractor:
         # Remove everything from the # Hard Skills header to the end
         updated_resume_lines = lines[:start_index]
 
+        print("replace_hard_skills_section is completed..")
+
         # Append the new Hard Skills section
         return "\n".join(updated_resume_lines).strip() + "\n\n" + new_hard_skills_section
 
@@ -385,6 +395,8 @@ class resume_extractor:
     
         # 5. Extract all remaining resume info and store it in JSON.
         resume_json = json.loads(self.extract_resume_info(updated_resume))
+
+        print("extraction is completed..")
     
         return resume_json
     

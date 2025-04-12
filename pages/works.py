@@ -28,7 +28,8 @@ def main():
     st.set_page_config(page_title="MIRRA Matcher - How it works", layout="wide")
     st.markdown(com.loadFont(), unsafe_allow_html=True)
     com.includeCss(st, 'works.css')
-
+    st.session_state["disabled"] = False
+    st.empty()
     header = st.container(key='works-header')
     _, middle, _ = st.columns([3,4,3])
 

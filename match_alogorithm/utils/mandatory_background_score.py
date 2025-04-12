@@ -224,16 +224,16 @@ def calculate_mandatory_background_scores(job_json_list, resume_json, threshold=
     return results
 
 
-if __name__ == "__main__":
-    # Example usage:
-    # Replace these with your actual list of job JSON objects (each with a "job_id")
-    # and your resume JSON object.
-    job_json_list = []  # List of job JSON objects
-    resume_json = {}  # Your resume JSON object
-    results = calculate_mandatory_background_scores(
-        job_json_list, resume_json, threshold=0.6
-    )
-    # The returned dictionary will have keys equal to each job's "job_id" and values like:
-    # { "mandatory_background_score": score, "mandatory_industry_score": score }
-    print("Mandatory Background Scores for Jobs:")
-    print(results)
+# if __name__ == "__main__":
+#     # Example usage:
+#     # Replace these with your actual list of job JSON objects (each with a "job_id")
+#     # and your resume JSON object.
+#     job_json_list = []  # List of job JSON objects
+#     resume_json = {}  # Your resume JSON object
+#     results = calculate_mandatory_background_scores(
+#         job_json_list, resume_json, threshold=0.6
+#     )
+#     # The returned dictionary will have keys equal to each job's "job_id" and values like:
+#     # { "mandatory_background_score": score, "mandatory_industry_score": score }
+#     print("Mandatory Background Scores for Jobs:")
+#     print(results)

@@ -211,9 +211,9 @@ def calculate_preferred_education_scores(job_json_list, resume_json):
     return results
 
 
-if __name__ == "__main__":
-    job_json_list = []  # Fill with your job JSON objects
-    resume_json = {}  # Your resume JSON object
-    results = calculate_preferred_education_scores(job_json_list, resume_json)
-    # print("Preferred Education Scores for Jobs:")
-    # print(json.dumps(results, indent=4))
+# if __name__ == "__main__":
+#     job_json_list = []  # Fill with your job JSON objects
+#     resume_json = {}  # Your resume JSON object
+#     results = calculate_preferred_education_scores(job_json_list, resume_json)
+#     # print("Preferred Education Scores for Jobs:")
+#     # print(json.dumps(results, indent=4))

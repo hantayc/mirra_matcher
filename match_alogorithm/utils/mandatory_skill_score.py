@@ -1,120 +1,196 @@
-# mandatory_skill_score.py
-
-import json
-from match_alogorithm.utils.semantic_similarity import (
-    nlp_similarity_cached,
-)  # Ensure this module provides nlp_similarity_cached
-
+import math
+import numpy as np
+from match_alogorithm.utils.semantic_similarity import nlp_similarity_cached
 
 def safe_average(values):
     valid = [v for v in values if v is not None]
     return sum(valid) / len(valid) if valid else None
 
-
 def extract_job_mandatory_skills(job_json):
     return job_json.get("mandatory", {}).get("hard_skills", [])
-
 
 def extract_resume_skills(resume_json):
     return resume_json.get("skills", [])
 
+def compute_group_similarity(candidate_group, required_group):
+    """
+    For a multi-term required_group (e.g. ["Salesforce dev", "Apex"]),
+    find the best match for each required term among candidate_group,
+    then average those best matches.
+    """
+    if not candidate_group or not required_group:
+        return 0.0
 
-def compute_required_skill_similarity(candidate_skill, job_required_skill):
-    # Normalize candidate_skill into groups.
-    # This ensures that whether candidate_skill is a single string,
-    # a flat list, or already a list of lists, we get a list of groups.
-    if isinstance(candidate_skill, str):
-        candidate_groups = [[candidate_skill]]
-    elif isinstance(candidate_skill, list):
-        if candidate_skill and isinstance(candidate_skill[0], list):
-            candidate_groups = candidate_skill
+    sims_for_required_terms = []
+    for req_term in required_group:
+        best_for_req_term = 0.0
+        for cand_term in candidate_group:
+            sim = nlp_similarity_cached(cand_term, req_term)
+            if sim > best_for_req_term:
+                best_for_req_term = sim
+        sims_for_required_terms.append(best_for_req_term)
+    return sum(sims_for_required_terms) / len(sims_for_required_terms)
+
+def compute_required_skill_similarity(candidate_skill_item, job_required_skill):
+    """
+    Each job_required_skill can be a list of multiple sub-groups
+    e.g. [ ["Salesforce dev", "Apex"], ["Salesforce.com development", "Apex"] ].
+    We compute the group similarity for each subgroup and pick the maximum.
+    """
+    if not job_required_skill:
+        return 0.0
+
+    if isinstance(job_required_skill[0], str):
+        # wrap a single group
+        job_required_skill = [job_required_skill]
+
+    candidate_group = candidate_skill_item.get("skill", [])
+    if not candidate_group:
+        return 0.0
+
+    best_sim = 0.0
+    for req_group in job_required_skill:
+        sim_score = compute_group_similarity(candidate_group, req_group)
+        if sim_score > best_sim:
+            best_sim = sim_score
+    return best_sim
+
+def aggregate_best_entries(resume_skills, job_required_skill):
+    """
+    For each job_id in the resume, pick the single best similarity and the max years.
+    Returns a list of dicts of the form:
+        { "job_id": ..., "sim": <best similarity>, "years": <max years> }
+    Only job_ids with sim > 0 are kept.
+    """
+    by_job_id = {}
+
+    for cand_skill_item in resume_skills:
+        jbid = cand_skill_item.get("job_id", "")
+        cand_years = cand_skill_item.get("years", 0.0)
+
+        sim = compute_required_skill_similarity(cand_skill_item, job_required_skill)
+        if jbid not in by_job_id:
+            by_job_id[jbid] = {"sim": sim, "years": cand_years}
         else:
-            candidate_groups = [candidate_skill]
-    else:
-        candidate_groups = []
+            if sim > by_job_id[jbid]["sim"]:
+                by_job_id[jbid]["sim"] = sim
+            if cand_years > by_job_id[jbid]["years"]:
+                by_job_id[jbid]["years"] = cand_years
 
-    # Normalize job_required_skill into groups.
-    # Similarly, we ensure job_required_skill is in the form of a list of groups.
-    if isinstance(job_required_skill, list) and job_required_skill:
-        if not isinstance(job_required_skill[0], list):
-            job_required_groups = [job_required_skill]
+    result = []
+    for jbid, vals in by_job_id.items():
+        if vals["sim"] > 0.0:
+            result.append({"job_id": jbid, "sim": vals["sim"], "years": vals["years"]})
+    return result
+
+def compute_single_requirement_score(resume_skills, job_required_skill, min_years_required):
+    """
+    Compute a weighted similarity score for a single requirement.
+    We:
+      1. Aggregate best entries per job_id.
+      2. Sort them (using NumPy) in descending order by similarity.
+      3. Iterate through the sorted entries, summing their contributions (weighted by the fraction
+         of the required years) until min_years_required is met.
+      4. Implement an early exit: if we encounter an entry with sim >= 0.9 and its available years
+         are sufficient to meet the remaining needed years, we treat it as a perfect match and stop.
+    """
+
+    if not resume_skills or not job_required_skill:
+        return 0.0
+
+    best_entries = aggregate_best_entries(resume_skills, job_required_skill)
+    if not best_entries:
+        return 0.0
+
+    # Sort the entries by similarity descending using NumPy.
+    sim_values = np.array([entry["sim"] for entry in best_entries])
+    sorted_indices = np.argsort(-sim_values)
+    best_entries = [best_entries[i] for i in sorted_indices]
+
+    coverage_used = 0.0
+    weighted_sum = 0.0
+    coverage_mode = None  # either "empty" or "real"
+    needed = float(min_years_required)
+
+    for item in best_entries:
+        jbid = item["job_id"]
+        sim = item["sim"]
+        yrs = item["years"]
+
+        if sim >= 0.9 and yrs >= needed:
+            weighted_sum = 1.0  # We treat sim >= 0.9 as perfect (1.0)
+            coverage_used = min_years_required
+            break
+
+        if coverage_used >= min_years_required:
+            break
+
+        if coverage_mode is None:
+            if jbid.strip() == "":
+                # Empty job_id skill
+                if yrs >= min_years_required:
+                    fraction = 1.0
+                    weighted_sum += sim * fraction
+                    coverage_used += min_years_required
+                    coverage_mode = "empty"
+                    break
+                else:
+                    continue
+            else:
+                # Real job_id: start accumulating coverage.
+                coverage_mode = "real"
+                use_years = min(yrs, needed)
+                fraction = use_years / float(min_years_required)
+                weighted_sum += sim * fraction
+                coverage_used += use_years
+                needed -= use_years
         else:
-            job_required_groups = job_required_skill
-    else:
-        job_required_groups = []
+            if coverage_mode == "empty":
+                break
+            else:
+                if jbid.strip() == "":
+                    continue
+                else:
+                    use_years = min(yrs, needed)
+                    fraction = use_years / float(min_years_required)
+                    weighted_sum += sim * fraction
+                    coverage_used += use_years
+                    needed -= use_years
 
-    # Return None if any of the required data is missing.
-    if not candidate_groups or not job_required_groups:
-        return None  # Missing requirements
+    if coverage_used <= 0:
+        return 0.0
 
-    best_overall = 0.0
-    # Iterate over each job requirement group.
-    for req_group in job_required_groups:
-        best_for_req = 0.0
-        for cand_group in candidate_groups:
-            candidate_term_scores = []
-            for cand_term in cand_group:
-                sims = []
-                # Compute similarity for each candidate term against all terms in the requirement group.
-                for req_term in req_group:
-                    sim = nlp_similarity_cached(cand_term, req_term)
-                    sims.append(sim)
-                if sims:
-                    # Update 3/26
-                    if len(req_group) == 1:
-                        term_score = max(sims)
-                    else:
-                        term_score = sum(sims) / len(sims)
-                    candidate_term_scores.append(term_score)
-            if candidate_term_scores:
-                # For the candidate group, take the maximum term score.
-                group_score = max(candidate_term_scores)
-                # If a perfect match is found, return 1.0 immediately.
-                if group_score == 1.0:
-                    return 1.0
-                if group_score > best_for_req:
-                    best_for_req = group_score
-        if best_for_req > best_overall:
-            best_overall = best_for_req
-    return best_overall
+    if coverage_used < min_years_required:
+        return weighted_sum
 
+    return weighted_sum
 
 def calculate_skill_match_score(job_json, resume_json):
+    """
+    Iterates over each mandatory skill requirement in the job JSON,
+    calls compute_single_requirement_score, and returns the average of all requirements.
+    """
+
     job_skills = extract_job_mandatory_skills(job_json)
     if not job_skills:
-        # print("=> No mandatory skill requirements specified.")
         return None
+
     resume_skills = extract_resume_skills(resume_json)
     requirement_scores = []
-    for req in job_skills:
+    for idx, req in enumerate(job_skills, start=1):
         job_required_skill = req.get("skill", [])
         min_years_required = req.get("minyears", [0])[0]
-        # print("----------------------------------------------------")
-        # print("Processing Mandatory Job Skill Requirement:")
-        # print(f"  Requirement: {job_required_skill}")
-        # print(f"  Minimum Years Required: {min_years_required}")
-        best_match = 0.0
-        for candidate in resume_skills:
-            candidate_years = candidate.get("years", 0)
-            if candidate_years >= min_years_required:
-                for candidate_skill in candidate.get("skill", []):
-                    sim = compute_required_skill_similarity(
-                        candidate_skill, job_required_skill
-                    )
-                    if sim is not None and sim > best_match:
-                        best_match = sim
-        # print(f"  Best match for requirement: {best_match}")
-        requirement_scores.append(best_match)
-    overall_skill = safe_average(requirement_scores)
-    # print(f"Overall Mandatory Skill Match Score: {overall_skill}")
-    return overall_skill
+        score_for_this_req = compute_single_requirement_score(resume_skills, job_required_skill, min_years_required)
+        requirement_scores.append(score_for_this_req)
 
+    overall_skill = safe_average(requirement_scores)
+    if overall_skill is None:
+        return None
+    else:
+        return overall_skill
 
 def calculate_mandatory_skill_score(job_json, resume_json):
-    mand_score = calculate_skill_match_score(job_json, resume_json)
-    # Do not include job_id in the value dictionary; it will be used as key externally.
-    return {"mandatory_skill_score": mand_score}
-
+    return {"mandatory_skill_score": calculate_skill_match_score(job_json, resume_json)}
 
 def calculate_mandatory_skill_scores(job_json_list, resume_json):
     """
@@ -122,18 +198,8 @@ def calculate_mandatory_skill_scores(job_json_list, resume_json):
     job_id to its mandatory skill score.
     """
     results = {}
-    for job_json in job_json_list:
+    for i, job_json in enumerate(job_json_list, start=1):
+        job_id = job_json.get("job_id", f"job_{i}")
         score_dict = calculate_mandatory_skill_score(job_json, resume_json)
-        job_id = job_json.get("job_id")
-        results[job_id] = score_dict  # job_id appears only as the dictionary key
+        results[job_id] = score_dict
     return results
-
-
-if __name__ == "__main__":
-    # Example usage:
-    # Replace these with your actual list of job JSON objects and a resume JSON object.
-    job_json_list = []  # List of job JSON objects with "job_id" defined
-    resume_json = {}  # Your resume JSON object
-    results = calculate_mandatory_skill_scores(job_json_list, resume_json)
-    print("Mandatory Skill Scores for Jobs:")
-    print(results)

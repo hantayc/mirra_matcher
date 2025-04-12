@@ -7,3 +7,6 @@ openai
 openpyxl
 sentence_transformers
 torch
+accelerate
+datetime
+hydralit_components

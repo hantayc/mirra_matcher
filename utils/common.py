@@ -73,6 +73,12 @@ def find_record_by_ids(vdb_list, file_path):
 
     return job_list
 
+def safe_json_loads(val):
+    try:
+        return json.loads(val)
+    except json.JSONDecodeError:
+        print(f"Error parsing JSON: {val}")
+        return None
 
 def read_excel_from_s3(bucket, key):
     """
@@ -82,6 +88,19 @@ def read_excel_from_s3(bucket, key):
     response = s3.get_object(Bucket=bucket, Key=key)
     # response['Body'] is a stream; wrap it with BytesIO before passing to pandas
     return pd.read_excel(BytesIO(response['Body'].read()))
+
+def find_record_by_ids_from_s3(vdb_list, bucket, key):
+    df = read_excel_from_s3(bucket, key)
+
+    job_list = json.loads('[]')
+    
+    for job in vdb_list:
+        job_id = job['id']
+        post_json = json.loads(find_record_by_id(job_id[4:], df))
+        post_json['job_id'] = job_id
+        job_list.append(post_json)
+
+    return job_list
 
 def find_record_by_id(target_id, df):
     """
@@ -134,3 +153,29 @@ def find_record_by_jobid(json_data, job_id):
         if item["job_id"] == job_id:
             return item
     return None
+
+def include_js_file(js_file_path, post_js):
+    with open('./js/' + js_file_path, 'r') as f:
+        js_code = f.read()
+
+    html_code = f"""
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <script>
+                    {js_code}
+
+                    {post_js}
+                </script>
+            </head>
+            <body>
+            </body>
+        </html>
+        """
+    return html_code
+
+def read_json_result(file_name):
+    with open('./data/' + file_name, 'r') as f:
+        json_result = f.read()
+    
+    return json.loads(json_result)
