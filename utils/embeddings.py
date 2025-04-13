@@ -82,12 +82,12 @@ class EmbeddingGenerator:
                 response_body = json.loads(response["Body"].read())
                 
                 # Debugging output to inspect response structure
-                print(f"Response type: {type(response_body)}")
-                if isinstance(response_body, list):
-                    print(f"Response length: {len(response_body)}")
-                    if len(response_body) > 0:
-                        print(f"First element type: {type(response_body[0])}")
-                        print(f"First element length: {len(response_body[0])}")
+                # print(f"Response type: {type(response_body)}")
+                # if isinstance(response_body, list):
+                #     print(f"Response length: {len(response_body)}")
+                #     if len(response_body) > 0:
+                #         print(f"First element type: {type(response_body[0])}")
+                #         print(f"First element length: {len(response_body[0])}")
                 
                 # Extract embedding
                 embedding = None

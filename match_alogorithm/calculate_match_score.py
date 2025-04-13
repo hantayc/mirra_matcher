@@ -255,6 +255,7 @@ def calculate_match_score(job_desc_json_lst, candidate_resume_JSON, parallel_pro
             print(f"[calculate_match_score] Attached match_scores for job_id: {job_id}")
 
     print("[calculate_match_score] Sorting results by overall match score...")
+    print(match_results)
     match_results = sorted(
         match_results,
         key=lambda x: x.get("match_scores", {}).get("overall_score", 0),
