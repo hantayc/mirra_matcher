@@ -455,10 +455,10 @@ class resume_extractor:
             indices_to_remove = []  # track which duplicates to remove if the new entry wins
 
             for i, existing in enumerate(deduped):
-                if is_duplicate(entry_winner, existing):
+                if self.is_duplicate(entry_winner, existing):
                     duplicate_found = True
                     # Compare by years and job_id presence.
-                    if compare_entries(entry_winner, existing):
+                    if self.compare_entries(entry_winner, existing):
                         # New entry wins over the existing one—mark existing for removal.
                         indices_to_remove.append(i)
                     else:
