@@ -61,6 +61,31 @@ def get_embedding(text: str):
         embedding_cache[text] = emb_tensor
         return emb_tensor
 
+# No Pinecone Leverage
+# def get_embedding(text: str):
+#     """
+#     Return the embedding for 'text' using:
+#     1) a local cache (if available),
+#     2) otherwise, call your SageMaker endpoint via embedder.generate_embeddings.
+    
+#     This version does not attempt to fetch embeddings from Pinecone.
+#     """
+#     text = text.strip()
+
+#     # Check local cache first.
+#     if text in embedding_cache:
+#         return embedding_cache[text]
+
+#     # Call your SageMaker endpoint or generate embeddings via embedder.
+#     emb_list = embedder.generate_embeddings([text])  # returns a list of lists
+#     if emb_list and len(emb_list) > 0:
+#         emb_tensor = torch.tensor(emb_list[0], device=device)
+#     else:
+#         emb_tensor = torch.zeros(embedder.embedding_dimension, device=device)
+    
+#     embedding_cache[text] = emb_tensor
+#     return emb_tensor
+
 def cosine_similarity(vec1, vec2):
     return util.cos_sim(vec1, vec2)
 

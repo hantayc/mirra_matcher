@@ -375,6 +375,129 @@ class resume_extractor:
         # Append the new Hard Skills section
         return "\n".join(updated_resume_lines).strip() + "\n\n" + new_hard_skills_section
 
+    def normalize_skill(self, skill_list):
+        """
+        Normalize the skill list: for every item, if it is a string, lower-case and strip it.
+        If it’s a list (group of skills), convert it into a tuple of lower-case stripped strings.
+        Returns a tuple representing the normalized skill value.
+        """
+        normalized = []
+        for item in skill_list:
+            if isinstance(item, str):
+                normalized.append(item.strip().lower())
+            elif isinstance(item, list):
+                # Convert inner list to a tuple of lower-case strings.
+                normalized.append(tuple(s.strip().lower() for s in item if isinstance(s, str)))
+            else:
+                # Fallback: convert any other type to string.
+                normalized.append(str(item).strip().lower())
+        return tuple(normalized)
+
+    def is_duplicate(self, entry_a, entry_b):
+        """
+        Two entries are considered duplicates if:
+        - Their normalized "skill" arrays are identical (order and grouping preserved), and
+        - Either both have nonempty job_id and the job_ids are identical,
+            OR at least one of the entries has an empty job_id.
+        """
+        norm_a = self.normalize_skill(entry_a["skill"])
+        norm_b = self.normalize_skill(entry_b["skill"])
+        if norm_a != norm_b:
+            return False
+
+        job_a = entry_a.get("job_id", "")
+        job_b = entry_b.get("job_id", "")
+        
+        # If both job_id values are non-empty, they must match exactly.
+        if job_a and job_b:
+            return job_a == job_b
+        # Otherwise, if at least one is empty, consider as duplicates.
+        return True
+
+    def compare_entries(self, entry_new, entry_existing):
+        """
+        Decide if 'entry_new' should replace 'entry_existing'.
+        The one with the larger 'years' value wins.
+        In case of equal years, we favor the one with a nonempty job_id.
+        
+        Returns True if entry_new should replace entry_existing.
+        """
+        if entry_new["years"] > entry_existing["years"]:
+            return True
+        elif entry_new["years"] < entry_existing["years"]:
+            return False
+        else:
+            # If years are equal, give priority to an entry with a job_id.
+            if entry_existing.get("job_id", "") == "" and entry_new.get("job_id", ""):
+                return True
+            else:
+                return False
+
+    def deduplicate_skills(self, resume_json):
+        """
+        Given a resume JSON (following the JSON schema provided) this function removes duplicate
+        skill entries according to the following rules:
+        1. Two entries are duplicates if their entire "skill" field (an array) are equal (case-insensitive),
+            and either both have nonempty job_id (which then must match exactly) or at least one entry's job_id is empty.
+        2. If duplicates are found and one entry has a job_id while the other doesn't,
+            then the one with the larger 'years' value wins. If the 'years' values are equal,
+            then the entry with a job_id is preferred.
+        
+        The function returns the updated JSON with a deduplicated "skills" array.
+        """
+        deduped = []  # will store the winning skills
+        
+        for entry in resume_json.get("skills", []):
+            entry_winner = entry  # candidate entry
+            duplicate_found = False  # flag to signal if a duplicate was encountered
+
+            # Check against already deduplicated entries.
+            indices_to_remove = []  # track which duplicates to remove if the new entry wins
+
+            for i, existing in enumerate(deduped):
+                if is_duplicate(entry_winner, existing):
+                    duplicate_found = True
+                    # Compare by years and job_id presence.
+                    if compare_entries(entry_winner, existing):
+                        # New entry wins over the existing one—mark existing for removal.
+                        indices_to_remove.append(i)
+                    else:
+                        # Existing entry wins; do not add the new entry.
+                        entry_winner = None
+                        break
+
+            # Remove any losing duplicate(s) (if the new entry won over them).
+            for idx in sorted(indices_to_remove, reverse=True):
+                deduped.pop(idx)
+                
+            # If entry_winner is still valid (i.e. it didn’t lose a duplicate check), add it.
+            if entry_winner is not None:
+                deduped.append(entry_winner)
+        
+        # Replace the "skills" list in the input JSON with the deduplicated list.
+        resume_json["skills"] = deduped
+        return resume_json
+
+
+    def deduplicate_background_values(self, resume_json):
+        """
+        For each professional background entry in resume_json, deduplicate the 'background'
+        array using a case-insensitive comparison. This function only deduplicates within
+        each individual 'background' array and preserves the order of first appearance.
+        """
+        for entry in resume_json.get("professional_background", []):
+            original_background = entry.get("background", [])
+            seen = set()
+            deduped_background = []
+            for bg in original_background:
+                # Normalize the string for comparison: lower-case and stripped.
+                norm_bg = bg.lower().strip()
+                if norm_bg not in seen:
+                    seen.add(norm_bg)
+                    deduped_background.append(bg)
+            entry["background"] = deduped_background
+        return resume_json
+
     def process_resume_to_json(self, resume_text):
         """
             Takes a raw resume string as input, processes it through various steps,
@@ -394,7 +517,13 @@ class resume_extractor:
         updated_resume = self.replace_hard_skills_section(reformatted, hard_skills_bullets)
     
         # 5. Extract all remaining resume info and store it in JSON.
-        resume_json = json.loads(self.extract_resume_info(updated_resume))
+        resume_json_raw = json.loads(self.extract_resume_info(updated_resume))
+
+        # 6. Deduplicate skills
+        deduped_skills = self.deduplicate_skills(resume_json_raw)
+
+        # 7. Deduplicate background
+        resume_json = self.deduplicate_background_values(deduped_skills)
 
         print("extraction is completed..")
     

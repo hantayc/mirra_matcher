@@ -66,12 +66,12 @@ def main():
 
     with uploader:
         _, file_center, _ = uploader.columns([1, 4, 1])
-        pdf_file = file_center.file_uploader("Finding your new job starts here.", type="pdf", key='pdf-uploader', disabled=st.session_state.disabled)
+        pdf_file = file_center.file_uploader("Finding your new job starts here.", type="pdf", key='pdf-uploader')
 
     def retrieve_resume_in_json(text):
         extracted_json = client.process_resume_to_json(text)
         st.session_state['resume_json'] = extracted_json
-        print(st.session_state['resume_json'])
+        com.logger(st.session_state['resume_json'])
     
     if pdf_file is not None and st.session_state['resume_filename'] != pdf_file.name:
         print("start resume extraction...")
@@ -79,7 +79,11 @@ def main():
             del st.session_state['resume_json']
         st.session_state['resume_filename'] = pdf_file.name
         extracted_text = com.extract_text_from_pdf(pdf_file)
-        retrieve_resume_in_json(extracted_text)
+        if st.secrets.main.demo:
+            com.logger("### Demo resume...")
+            st.session_state['resume_json'] = com.read_json_result('resume.json')
+        else:
+            retrieve_resume_in_json(extracted_text)
         # task_thread = threading.Thread(target=retrieve_resume_in_json, args=(extracted_text,))
         # task_thread.start()
         # task_thread.join()
@@ -128,17 +132,24 @@ def main():
                 with st.spinner("Looking for the best matches... Please wait!"):
 
                     com.logger(filter_dict)
-                    response = pc.search(keywords, filter_dict)
+                    if st.secrets.pinecone.in_use:
+                        response = pc.search(keywords, filter_dict)
+                    else:
+                        response = ""
                     # response = json.loads(vdb_result)
                     if st.secrets.aws.bucket_name:
                         job_list = com.find_record_by_ids_from_s3(response, st.secrets.aws.bucket_name, st.secrets.aws.file_key)
                     else:
+                        com.logger("### Loading posting files...")    
                         job_list = com.find_record_by_ids(response, st.secrets.aws.path)
                     # print(job_list)
                     resume = st.session_state['resume_json']
                     com.logger(type(job_list))
                     com.logger(type(resume))
-                    matches = calculate_match_score(job_desc_json_lst=job_list, candidate_resume_JSON=resume, parallel_processing=True)
+                    if st.secrets.main.demo:
+                        matches = com.read_json_result('match_result.json')
+                    else:
+                        matches = calculate_match_score(job_desc_json_lst=job_list, candidate_resume_JSON=resume, parallel_processing=True)
                     com.logger(type(matches))
                     com.logger(matches)
                     if matches:

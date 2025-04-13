@@ -1,47 +1,88 @@
-import math
 import numpy as np
-from match_alogorithm.utils.semantic_similarity import nlp_similarity_cached
+from match_alogorithm.utils.semantic_similarity import get_embedding
+import faiss
 
+########################################################################
+# HELPERS & UTILITY FUNCTIONS
+########################################################################
 def safe_average(values):
     valid = [v for v in values if v is not None]
     return sum(valid) / len(valid) if valid else None
 
+def normalize_text(text: str) -> str:
+    if not isinstance(text, str):
+        raise ValueError("normalize_text expects a string, but got a non-string value.")
+    return text.strip()
+    
+########################################################################
+# JOB & RESUME SKILL EXTRACTION
+########################################################################
 def extract_job_mandatory_skills(job_json):
     return job_json.get("mandatory", {}).get("hard_skills", [])
 
 def extract_resume_skills(resume_json):
     return resume_json.get("skills", [])
 
+########################################################################
+# FAISS-BASED GROUP SIMILARITY
+########################################################################
+def build_faiss_index(terms):
+    """
+    Given a list of text terms, compute their embeddings and build a FAISS index
+    using inner-product search (which works as cosine similarity if vectors are normalized).
+    Returns the FAISS index and an array of embeddings.
+    """
+    embeddings = []
+    for term in terms:
+        emb = get_embedding(term).detach().cpu().numpy().astype(np.float32)
+        norm = np.linalg.norm(emb)
+        if norm > 0:
+            emb = emb / norm
+        embeddings.append(emb)
+    embeddings = np.vstack(embeddings)
+    d = embeddings.shape[1]
+    index = faiss.IndexFlatIP(d)
+    index.add(embeddings)
+    return index, embeddings
+
 def compute_group_similarity(candidate_group, required_group):
     """
     For a multi-term required_group (e.g. ["Salesforce dev", "Apex"]),
-    find the best match for each required term among candidate_group,
-    then average those best matches.
+    build a FAISS index from candidate_group embeddings and for each required term,
+    retrieve the highest similarity. Then, average these best similarities.
     """
     if not candidate_group or not required_group:
         return 0.0
 
-    sims_for_required_terms = []
+    # Build FAISS index for candidate_group texts.
+    index, _ = build_faiss_index(candidate_group)
+    sims = []
     for req_term in required_group:
-        best_for_req_term = 0.0
-        for cand_term in candidate_group:
-            sim = nlp_similarity_cached(cand_term, req_term)
-            if sim > best_for_req_term:
-                best_for_req_term = sim
-        sims_for_required_terms.append(best_for_req_term)
-    return sum(sims_for_required_terms) / len(sims_for_required_terms)
+        req_emb = get_embedding(req_term).detach().cpu().numpy().astype(np.float32)
+        norm = np.linalg.norm(req_emb)
+        if norm > 0:
+            req_emb = req_emb / norm
+        req_emb = np.expand_dims(req_emb, axis=0)
+        distances, indices = index.search(req_emb, 1)
+        best_sim = distances[0][0]  # Inner product similarity
+        sims.append(best_sim)
+    return sum(sims) / len(sims)
 
+########################################################################
+# REQUIRED SKILL SIMILARITY & AGGREGATION
+########################################################################
 def compute_required_skill_similarity(candidate_skill_item, job_required_skill):
     """
-    Each job_required_skill can be a list of multiple sub-groups
-    e.g. [ ["Salesforce dev", "Apex"], ["Salesforce.com development", "Apex"] ].
-    We compute the group similarity for each subgroup and pick the maximum.
+    For a given candidate skill item and a job-required skill (which can be a list of sub-groups),
+    compute the similarity as follows:
+      - If job_required_skill is a single group, wrap it in a list.
+      - For each subgroup in job_required_skill, compute the group similarity using FAISS.
+      - Return the maximum similarity across subgroups.
     """
     if not job_required_skill:
         return 0.0
 
     if isinstance(job_required_skill[0], str):
-        # wrap a single group
         job_required_skill = [job_required_skill]
 
     candidate_group = candidate_skill_item.get("skill", [])
@@ -57,17 +98,17 @@ def compute_required_skill_similarity(candidate_skill_item, job_required_skill):
 
 def aggregate_best_entries(resume_skills, job_required_skill):
     """
-    For each job_id in the resume, pick the single best similarity and the max years.
+    For each candidate skill item in resume_skills, compute its best similarity score 
+    (using compute_required_skill_similarity) and record its maximum years.
+    Then group by job_id and pick the highest similarity per job.
     Returns a list of dicts of the form:
-        { "job_id": ..., "sim": <best similarity>, "years": <max years> }
-    Only job_ids with sim > 0 are kept.
+      { "job_id": <job_id>, "sim": <best similarity>, "years": <max years> }
+    Only entries with sim > 0 are kept.
     """
     by_job_id = {}
-
     for cand_skill_item in resume_skills:
         jbid = cand_skill_item.get("job_id", "")
         cand_years = cand_skill_item.get("years", 0.0)
-
         sim = compute_required_skill_similarity(cand_skill_item, job_required_skill)
         if jbid not in by_job_id:
             by_job_id[jbid] = {"sim": sim, "years": cand_years}
@@ -76,7 +117,6 @@ def aggregate_best_entries(resume_skills, job_required_skill):
                 by_job_id[jbid]["sim"] = sim
             if cand_years > by_job_id[jbid]["years"]:
                 by_job_id[jbid]["years"] = cand_years
-
     result = []
     for jbid, vals in by_job_id.items():
         if vals["sim"] > 0.0:
@@ -86,15 +126,12 @@ def aggregate_best_entries(resume_skills, job_required_skill):
 def compute_single_requirement_score(resume_skills, job_required_skill, min_years_required):
     """
     Compute a weighted similarity score for a single requirement.
-    We:
-      1. Aggregate best entries per job_id.
-      2. Sort them (using NumPy) in descending order by similarity.
-      3. Iterate through the sorted entries, summing their contributions (weighted by the fraction
-         of the required years) until min_years_required is met.
-      4. Implement an early exit: if we encounter an entry with sim >= 0.9 and its available years
-         are sufficient to meet the remaining needed years, we treat it as a perfect match and stop.
+    1. Aggregate best entries (by job_id).
+    2. Sort them in descending order by similarity.
+    3. Iterate through the sorted entries, summing their contributions (weighted by the fraction
+       of the required years) until min_years_required is met.
+    If an entry with sim >= 0.9 can cover the remaining years, it is treated as a perfect match.
     """
-
     if not resume_skills or not job_required_skill:
         return 0.0
 
@@ -102,14 +139,10 @@ def compute_single_requirement_score(resume_skills, job_required_skill, min_year
     if not best_entries:
         return 0.0
 
-    # Sort the entries by similarity descending using NumPy.
-    sim_values = np.array([entry["sim"] for entry in best_entries])
-    sorted_indices = np.argsort(-sim_values)
-    best_entries = [best_entries[i] for i in sorted_indices]
-
+    # Sort entries by similarity descending.
+    best_entries = sorted(best_entries, key=lambda x: x["sim"], reverse=True)
     coverage_used = 0.0
     weighted_sum = 0.0
-    coverage_mode = None  # either "empty" or "real"
     needed = float(min_years_required)
 
     for item in best_entries:
@@ -118,79 +151,52 @@ def compute_single_requirement_score(resume_skills, job_required_skill, min_year
         yrs = item["years"]
 
         if sim >= 0.9 and yrs >= needed:
-            weighted_sum = 1.0  # We treat sim >= 0.9 as perfect (1.0)
+            weighted_sum = 1.0  # Perfect match for remaining requirement.
             coverage_used = min_years_required
             break
 
         if coverage_used >= min_years_required:
             break
 
-        if coverage_mode is None:
-            if jbid.strip() == "":
-                # Empty job_id skill
-                if yrs >= min_years_required:
-                    fraction = 1.0
-                    weighted_sum += sim * fraction
-                    coverage_used += min_years_required
-                    coverage_mode = "empty"
-                    break
-                else:
-                    continue
-            else:
-                # Real job_id: start accumulating coverage.
-                coverage_mode = "real"
-                use_years = min(yrs, needed)
-                fraction = use_years / float(min_years_required)
-                weighted_sum += sim * fraction
-                coverage_used += use_years
-                needed -= use_years
-        else:
-            if coverage_mode == "empty":
-                break
-            else:
-                if jbid.strip() == "":
-                    continue
-                else:
-                    use_years = min(yrs, needed)
-                    fraction = use_years / float(min_years_required)
-                    weighted_sum += sim * fraction
-                    coverage_used += use_years
-                    needed -= use_years
+        if jbid.strip() == "":
+            continue
 
-    if coverage_used <= 0:
-        return 0.0
+        use_years = min(yrs, needed)
+        fraction = use_years / float(min_years_required)
+        weighted_sum += sim * fraction
+        coverage_used += use_years
+        needed -= use_years
 
     if coverage_used < min_years_required:
         return weighted_sum
-
     return weighted_sum
 
+########################################################################
+# OVERALL MATCH SCORE CALCULATION
+########################################################################
 def calculate_skill_match_score(job_json, resume_json):
     """
     Iterates over each mandatory skill requirement in the job JSON,
-    calls compute_single_requirement_score, and returns the average of all requirements.
+    computes a weighted similarity score for each requirement,
+    and returns the average of these scores.
     """
-
     job_skills = extract_job_mandatory_skills(job_json)
     if not job_skills:
         return None
 
     resume_skills = extract_resume_skills(resume_json)
     requirement_scores = []
-    for idx, req in enumerate(job_skills, start=1):
+    for req in job_skills:
         job_required_skill = req.get("skill", [])
         min_years_required = req.get("minyears", [0])[0]
         score_for_this_req = compute_single_requirement_score(resume_skills, job_required_skill, min_years_required)
         requirement_scores.append(score_for_this_req)
-
     overall_skill = safe_average(requirement_scores)
-    if overall_skill is None:
-        return None
-    else:
-        return overall_skill
+    return overall_skill
 
 def calculate_mandatory_skill_score(job_json, resume_json):
-    return {"mandatory_skill_score": calculate_skill_match_score(job_json, resume_json)}
+    score = calculate_skill_match_score(job_json, resume_json)
+    return {"mandatory_skill_score": score}
 
 def calculate_mandatory_skill_scores(job_json_list, resume_json):
     """

@@ -1,140 +1,182 @@
 # responsibilities_match_score.py
+import numpy as np
+from match_alogorithm.utils.semantic_similarity import get_embedding
+import faiss
 
-import json
-from match_alogorithm.utils.semantic_similarity import (
-    nlp_similarity_cached,
-)  # Ensure this module is in your PYTHONPATH
-
-
+###############################################
+# Helper functions
+###############################################
 def safe_average(values):
     valid = [v for v in values if v is not None]
     return sum(valid) / len(valid) if valid else None
 
+def normalize_text(text: str) -> str:
+    if not isinstance(text, str):
+        raise ValueError("normalize_text expects a string, but got a non-string value.")
+    return text.strip()
 
-def extract_job_responsibilities_hard_skills(job_json):
-    return job_json.get("responsibility", {}).get("hard_skills", [])
-
-
-def extract_resume_skills(resume_json):
-    return resume_json.get("skills", [])
-
-
-def compute_required_skill_similarity(candidate_skill, job_required_skill):
+###############################################
+# FAISS Helper Functions
+###############################################
+def build_faiss_index_for_terms(terms):
     """
-    Computes a similarity score between candidate skill(s) and a job-required skill.
-    Normalizes candidate_skill and job_required_skill into groups and returns the maximum average similarity.
+    Given a list of text terms, compute their embeddings using get_embedding,
+    normalize them, and build a FAISS index (using inner product, which is cosine
+    similarity if vectors are normalized).
+    Returns the FAISS index.
     """
-    # Normalize candidate_skill into groups.
-    if isinstance(candidate_skill, str):
-        candidate_groups = [[candidate_skill]]
-    elif isinstance(candidate_skill, list):
-        if candidate_skill and isinstance(candidate_skill[0], list):
-            candidate_groups = candidate_skill
-        else:
-            candidate_groups = [candidate_skill]
-    else:
-        candidate_groups = []
+    embeddings = []
+    for term in terms:
+        emb = get_embedding(term).detach().cpu().numpy().astype(np.float32)
+        norm_val = np.linalg.norm(emb)
+        if norm_val > 0:
+            emb = emb / norm_val
+        embeddings.append(emb)
+    embeddings = np.vstack(embeddings)
+    d = embeddings.shape[1]
+    index = faiss.IndexFlatIP(d)
+    index.add(embeddings)
+    return index
 
-    # Normalize job_required_skill into groups.
-    if isinstance(job_required_skill, list) and job_required_skill:
-        if not isinstance(job_required_skill[0], list):
-            job_required_groups = [job_required_skill]
-        else:
-            job_required_groups = job_required_skill
-    else:
-        job_required_groups = []
+def faiss_group_similarity(candidate_texts, required_texts):
+    """
+    Given a list of candidate_texts and required_texts (both lists of strings),
+    builds a FAISS index from candidate_texts and for each required text retrieves
+    the best cosine similarity. Returns the average best similarity.
+    """
+    if not candidate_texts or not required_texts:
+        return 0.0
 
-    if not candidate_groups or not job_required_groups:
-        return None  # Missing requirements
+    index = build_faiss_index_for_terms(candidate_texts)
+    sims = []
+    for req_text in required_texts:
+        req_emb = get_embedding(req_text).detach().cpu().numpy().astype(np.float32)
+        norm_val = np.linalg.norm(req_emb)
+        if norm_val > 0:
+            req_emb = req_emb / norm_val
+        req_emb = np.expand_dims(req_emb, axis=0)
+        distances, indices = index.search(req_emb, 1)
+        best_sim = distances[0][0]
+        sims.append(best_sim)
+    return sum(sims) / len(sims)
+
+###############################################
+# Normalization of Responsibility Inputs
+###############################################
+def normalize_candidate_responsibility(candidate_resp):
+    """
+    Accepts candidate responsibility input. If it's a string, wraps it as [[string]].
+    If it's a list of strings, returns [list-of-strings].
+    If it's already a list of lists, returns it unchanged.
+    """
+    if isinstance(candidate_resp, str):
+        return [[candidate_resp]]
+    elif isinstance(candidate_resp, list):
+        if candidate_resp and isinstance(candidate_resp[0], list):
+            return candidate_resp
+        else:
+            return [candidate_resp]
+    else:
+        return []
+
+def normalize_required_responsibility(required_resp):
+    """
+    Similar to normalize_candidate_responsibility but for job required responsibility input.
+    """
+    if isinstance(required_resp, str):
+        return [[required_resp]]
+    elif isinstance(required_resp, list):
+        if required_resp and isinstance(required_resp[0], list):
+            return required_resp
+        else:
+            return [required_resp]
+    else:
+        return []
+
+###############################################
+# Responsibilities Similarity Functions (Using FAISS)
+###############################################
+def compute_responsibility_similarity(candidate_resp, job_required_resp):
+    """
+    Computes a similarity score between candidate responsibility and required responsibility.
+    Each input (candidate_resp and job_required_resp) is normalized into groups.
+    For each required group, we compute the average best similarity (via FAISS) with candidate groups.
+    Returns the maximum similarity score over all required groups.
+    """
+    candidate_groups = normalize_candidate_responsibility(candidate_resp)
+    required_groups = normalize_required_responsibility(job_required_resp)
+    
+    if not candidate_groups or not required_groups:
+        return None
 
     best_overall = 0.0
-    for req_group in job_required_groups:
-        # print(f"\nProcessing Job Requirement Group: {req_group}")
+    for req_group in required_groups:
         best_for_req = 0.0
         for cand_group in candidate_groups:
-            candidate_term_avgs = []
-            # print(f"  Evaluating Candidate Group: {cand_group}")
-            for cand_term in cand_group:
-                sims = []
-                for req_term in req_group:
-                    sim = nlp_similarity_cached(cand_term, req_term)
-                    # print(f"    '{cand_term}' vs. '{req_term}': similarity = {sim}")
-                    sims.append(sim)
-                if sims:
-                    avg_sim = sum(sims) / len(sims)
-                    # print(f"    => Average similarity for '{cand_term}': {avg_sim}")
-                    candidate_term_avgs.append(avg_sim)
-            if candidate_term_avgs:
-                group_avg = max(candidate_term_avgs)
-                # print(f"  => Best average for group {cand_group}: {group_avg}")
-                if group_avg == 1.0:
-                    return 1.0
-                if group_avg > best_for_req:
-                    best_for_req = group_avg
+            sim_score = faiss_group_similarity(cand_group, req_group)
+            if sim_score > best_for_req:
+                best_for_req = sim_score
         if best_for_req > best_overall:
             best_overall = best_for_req
-    # print(f"\n   --> Best overall similarity: {best_overall}")
     return best_overall
 
+###############################################
+# Extraction Functions (No mention of "skills")
+###############################################
+def extract_job_responsibilities(job_json):
+    """
+    Assumes the job responsibilities are stored under:
+        job_json["responsibility"]["responsibilities"]
+    and that each responsibility is an object with a key "text" holding its description.
+    """
+    return job_json.get("responsibility", {}).get("responsibilities", [])
 
+def extract_candidate_responsibilities(resume_json):
+    """
+    Assumes candidate (resume) responsibilities are stored under:
+        resume_json["responsibilities"]
+    and that each responsibility is an object with a key "text" holding its description.
+    """
+    return resume_json.get("responsibilities", [])
+
+###############################################
+# Overall Responsibilities Match Score
+###############################################
 def calculate_responsibilities_match_score(job_json, resume_json):
     """
     Computes the overall responsibilities match score for a single job.
-    If no responsibilities are specified in the job JSON, returns None.
+    For each job responsibility, this function finds the best matching candidate responsibility
+    (using FAISS-based similarity). Then, it averages these best-match similarities.
     """
-    job_responsibilities = extract_job_responsibilities_hard_skills(job_json)
-    if not job_responsibilities:
-        # print("=> No responsibilities specified in job description.")
+    job_resps = extract_job_responsibilities(job_json)
+    if not job_resps:
         return None
-    candidate_responsibilities = extract_resume_skills(resume_json)
-    responsibility_scores = []
-    for resp in job_responsibilities:
-        required_resp = resp.get("skill", [])
-        # print("\n--- Checking Job Responsibility ---")
-        # print("Required Responsibility:")
-        # print(json.dumps(required_resp, indent=4))
+    candidate_resps = extract_candidate_responsibilities(resume_json)
+    resp_scores = []
+    for resp in job_resps:
+        required_text = resp.get("text", "")  # each job responsibility is expected to have "text"
         best_sim = 0.0
-        for candidate in candidate_responsibilities:
-            candidate_resp = candidate.get("skill", [])
-            sim = compute_required_skill_similarity(candidate_resp, required_resp)
-            # print(f"Candidate Responsibility: {candidate_resp} -> Similarity: {sim}")
+        for candidate in candidate_resps:
+            candidate_text = candidate.get("text", "")
+            sim = compute_responsibility_similarity(candidate_text, required_text)
             if sim is not None and sim > best_sim:
                 best_sim = sim
-        # print(f"=> Best match for responsibility: {best_sim}\n")
-        responsibility_scores.append(best_sim)
-    overall_resp = safe_average(responsibility_scores)
+        resp_scores.append(best_sim)
+    overall_resp = safe_average(resp_scores)
     return overall_resp
-
 
 def calculate_overall_responsibilities_match_score(job_json, resume_json):
     overall_resp = calculate_responsibilities_match_score(job_json, resume_json)
-    # Return the result as a dictionary with key "responsibilities_score"
     return {"responsibilities_score": overall_resp}
-
 
 def calculate_responsibilities_scores(job_json_list, resume_json):
     """
     Accepts a list of job JSON objects and returns a dictionary mapping each job's
-    job_id to its responsibilities score dictionary.
-    The returned dictionary has keys equal to the job's job_id and values equal to a dictionary
-    with a single key "responsibilities_score".
+    job_id to its responsibilities match score.
     """
     results = {}
     for job_json in job_json_list:
-        score_dict = calculate_overall_responsibilities_match_score(
-            job_json, resume_json
-        )
+        score_dict = calculate_overall_responsibilities_match_score(job_json, resume_json)
         job_id = job_json.get("job_id")
         results[job_id] = score_dict
     return results
-
-
-# if __name__ == "__main__":
-#     # Example usage:
-#     # Replace these with your actual list of job JSON objects (each with a "job_id" key)
-#     # and a resume JSON object.
-#     job_json_list = []  # List of job JSON objects
-#     resume_json = {}  # Your resume JSON object
-#     results = calculate_responsibilities_scores(job_json_list, resume_json)
-#     print("Responsibilities Scores for Jobs:")
-#     print(results)

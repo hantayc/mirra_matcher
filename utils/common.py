@@ -65,10 +65,23 @@ def find_record_by_ids(vdb_list, file_path):
 
     job_list = json.loads('[]')
     
-    for job in vdb_list:
-        job_id = job['id']
-        post_json = json.loads(find_record_by_id(job_id[4:], df))
-        post_json['job_id'] = job_id
+    if vdb_list:
+        for job in vdb_list:
+            job_id = job['id']
+            post_json = json.loads(find_record_by_id(job_id[4:], df))
+            post_json['job_id'] = job_id
+            job_list.append(post_json)
+    else:
+        job_list = get_all_records(df)
+
+    return job_list
+
+def get_all_records(df):
+    job_list = json.loads('[]')
+
+    for index, row in df.iterrows():
+        post_json = json.loads(row['extracted'])
+        post_json['job_id'] = f"job_{row['id']}"
         job_list.append(post_json)
 
     return job_list
@@ -93,12 +106,15 @@ def find_record_by_ids_from_s3(vdb_list, bucket, key):
     df = read_excel_from_s3(bucket, key)
 
     job_list = json.loads('[]')
-    
-    for job in vdb_list:
-        job_id = job['id']
-        post_json = json.loads(find_record_by_id(job_id[4:], df))
-        post_json['job_id'] = job_id
-        job_list.append(post_json)
+
+    if vdb_list:    
+        for job in vdb_list:
+            job_id = job['id']
+            post_json = json.loads(find_record_by_id(job_id[4:], df))
+            post_json['job_id'] = job_id
+            job_list.append(post_json)
+    else:
+        job_list = get_all_records(df)
 
     return job_list
 

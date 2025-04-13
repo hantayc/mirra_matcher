@@ -1,14 +1,14 @@
 def make_overall_scores(
     job_scores_dict,
     # top-level weights (must sum to 1):
-    mandatory_weight=0.5,
-    preferred_weight=0.5,
+    mandatory_weight=0.8,
+    preferred_weight=0.2,
     # subcategory weights (must sum to 1):
-    skills_weight=0.2,
-    education_weight=0.2,
-    background_weight=0.2,
-    credentials_weight=0.2,
-    responsibilities_weight=0.2,
+    skills_weight=0.24,
+    education_weight=0.24,
+    background_weight=0.24,
+    credentials_weight=0.24,
+    responsibilities_weight=0.04,
 ):
     """
     For each job_id in `job_scores_dict`, compute:

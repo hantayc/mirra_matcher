@@ -9,4 +9,4 @@ sentence_transformers
 torch
 accelerate
 datetime
-hydralit_components
+faiss-gpu

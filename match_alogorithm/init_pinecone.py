@@ -1,7 +1,3 @@
-import os
-import traceback
-import threading
-
 from pinecone import Pinecone
 
 PINECONE_API_KEY = (
@@ -20,6 +16,8 @@ except Exception as e:
     pc = None
     pinecone_index = None
 
-# Create local caches for embeddings and similarities
 embedding_cache = {}
 similarity_cache = {}
+aggregated_candidate_cache = {}
+pinecone_query_cache = {}
+faiss_index_cache = {}

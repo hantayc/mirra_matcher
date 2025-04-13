@@ -15,7 +15,6 @@ from match_alogorithm.utils.preferred_background_score import calculate_preferre
 from match_alogorithm.utils.merge_scores import merge_scores_by_job_id
 from match_alogorithm.utils.overall_scores import make_overall_scores
 
-from utils.common import logger
 
 ###############################################################################
 # Helper: Split a list into n roughly equal chunks
@@ -71,6 +70,24 @@ def calculate_match_score(job_desc_json_lst, candidate_resume_JSON, parallel_pro
     print(f"[calculate_match_score] Total Length of Sample: {len(job_desc_json_lst)}")
     print(f"[calculate_match_score] parallel_processing={parallel_processing}")
 
+    # Test Pinecone connection
+    PINECONE_API_KEY = (
+        "pcsk_7VkStS_ifR3SH9d1MSkkju9kP7DUt5M16CpNyzi9dwNBm7iUqyXmbKZWQbC55ZzfSEaAB"
+    )
+    PINECONE_ENVIRONMENT = "us-east-1"
+    PINECONE_INDEX_NAME = "sample-100-strings"  # Must match an existing index or be created
+    
+    try:
+        # Instantiate Pinecone client and get the index
+        pc = Pinecone(api_key=PINECONE_API_KEY, environment=PINECONE_ENVIRONMENT)
+        pinecone_index = pc.Index(PINECONE_INDEX_NAME)
+        print("Pinecone connected successfully!")
+    except Exception as e:
+        # If any error occurs, print it and fallback to None
+        print("Error connecting to Pinecone, proceeding without it:", str(e))
+        pc = None
+        pinecone_index = None
+
     # ================================================================
     # Stage 1: Calculate component scores (6 tasks)
     # ================================================================
@@ -124,33 +141,33 @@ def calculate_match_score(job_desc_json_lst, candidate_resume_JSON, parallel_pro
             preferred_background_scores = futures_stage1["preferred_background"].result()
             print("[calculate_match_score] Got preferred_background_scores")
     else:
-        logger("[calculate_match_score] Stage 1: Running tasks line by line...")
+        print("[calculate_match_score] Stage 1: Running tasks line by line...")
         mandatory_credentials_scores = calculate_mandatory_credentials_scores(
             job_desc_json_lst, candidate_resume_JSON
         )
-        logger("[calculate_match_score] Finished mandatory_credentials_scores")
+        print("[calculate_match_score] Finished mandatory_credentials_scores")
         preferred_credentials_scores = calculate_preferred_credentials_scores(
             job_desc_json_lst, candidate_resume_JSON
         )
-        logger("[calculate_match_score] Finished preferred_credentials_scores")
+        print("[calculate_match_score] Finished preferred_credentials_scores")
         mandatory_education_scores = calculate_mandatory_education_scores(
             job_desc_json_lst, candidate_resume_JSON
         )
-        logger("[calculate_match_score] Finished mandatory_education_scores")
+        print("[calculate_match_score] Finished mandatory_education_scores")
         preferred_education_scores = calculate_preferred_education_scores(
             job_desc_json_lst, candidate_resume_JSON
         )
-        logger("[calculate_match_score] Finished preferred_education_scores")
+        print("[calculate_match_score] Finished preferred_education_scores")
         mandatory_background_scores = calculate_mandatory_background_scores(
             job_desc_json_lst, candidate_resume_JSON
         )
-        logger("[calculate_match_score] Finished mandatory_background_scores")
+        print("[calculate_match_score] Finished mandatory_background_scores")
         preferred_background_scores = calculate_preferred_background_scores(
             job_desc_json_lst, candidate_resume_JSON
         )
-        logger("[calculate_match_score] Finished preferred_background_scores")
+        print("[calculate_match_score] Finished preferred_background_scores")
 
-    logger("[calculate_match_score] Stage 1 complete. Merging results...")
+    print("[calculate_match_score] Stage 1 complete. Merging results...")
     stage1_scores = merge_scores_by_job_id(
         mandatory_background_scores,
         preferred_background_scores,
@@ -161,18 +178,18 @@ def calculate_match_score(job_desc_json_lst, candidate_resume_JSON, parallel_pro
         filter=True,
         threshold=0.5,
     )
-    logger("[calculate_match_score] Stage 1.5: Merged scores from Stage 1")
+    print("[calculate_match_score] Stage 1.5: Merged scores from Stage 1")
 
     # Filter the job list to only those that passed Stage 1.
     stage_job_desc_json_lst = [
         job for job in job_desc_json_lst if job.get("job_id") in set(stage1_scores.keys())
     ]
-    logger(f"[calculate_match_score] Total Length after Stage 1: {len(stage_job_desc_json_lst)}")
+    print(f"[calculate_match_score] Total Length after Stage 1: {len(stage_job_desc_json_lst)}")
 
     # ================================================================
     # Stage 2: Additional dimension scoring (3 tasks)
     # ================================================================
-    logger("[calculate_match_score] Stage 2: Start")
+    print("[calculate_match_score] Stage 2: Start")
     if parallel_processing:
         print("[calculate_match_score] Stage 2: Splitting jobs into 10 chunks and submitting tasks...")
         num_chunks = 10
@@ -185,19 +202,19 @@ def calculate_match_score(job_desc_json_lst, candidate_resume_JSON, parallel_pro
             print("[calculate_match_score] Stage 2: Waiting for all futures...")
             results_list = [f.result() for f in futures_stage2]
     else:
-        logger("[calculate_match_score] Stage 2: Running tasks line by line...")
+        print("[calculate_match_score] Stage 2: Running tasks line by line...")
         responsibilities_score = calculate_responsibilities_scores(
             job_json_list=stage_job_desc_json_lst, resume_json=candidate_resume_JSON
         )
-        logger("[calculate_match_score] Finished responsibilities_score")
+        print("[calculate_match_score] Finished responsibilities_score")
         mandatory_skills_scores = calculate_mandatory_skill_scores(
             job_json_list=stage_job_desc_json_lst, resume_json=candidate_resume_JSON
         )
-        logger("[calculate_match_score] Finished mandatory_skills_scores")
+        print("[calculate_match_score] Finished mandatory_skills_scores")
         preferred_skills_scores = calculate_preferred_skill_scores(
             job_json_list=stage_job_desc_json_lst, resume_json=candidate_resume_JSON
         )
-        logger("[calculate_match_score] Finished preferred_skills_scores")
+        print("[calculate_match_score] Finished preferred_skills_scores")
         results_list = [
             merge_scores_by_job_id(
                 responsibilities_score,
@@ -213,38 +230,38 @@ def calculate_match_score(job_desc_json_lst, candidate_resume_JSON, parallel_pro
         lambda a, b: merge_scores_by_job_id(a, b, filter=True, threshold=0.5),
         results_list,
     )
-    logger("[calculate_match_score] Stage 2.5: Merged scores from Stage 2")
+    print("[calculate_match_score] Stage 2.5: Merged scores from Stage 2")
 
     final_job_desc_json_lst = [
         job for job in stage_job_desc_json_lst if job.get("job_id") in stage2_scores
     ]
-    logger(f"[calculate_match_score] Total Length after Stage 2: {len(final_job_desc_json_lst)}")
+    print(f"[calculate_match_score] Total Length after Stage 2: {len(final_job_desc_json_lst)}")
 
     # ================================================================
     # Stage 3: Final overall score calculation
     # ================================================================
-    logger("[calculate_match_score] Stage 3: Computing overall scores...")
+    print("[calculate_match_score] Stage 3: Computing overall scores...")
     overall_scores = make_overall_scores(stage2_scores)
     overall_scores = dict(overall_scores)
 
-    logger("[calculate_match_score] Attaching match_scores to each job...")
+    print("[calculate_match_score] Attaching match_scores to each job...")
     match_results = []
     for job in final_job_desc_json_lst:
         job_id = job.get("job_id")
-        logger(f"[calculate_match_score] Processing job_id: {job_id}")
+        print(f"[calculate_match_score] Processing job_id: {job_id}")
         if job_id in overall_scores:
             job["match_scores"] = overall_scores[job_id]
             match_results.append(job)
-            logger(f"[calculate_match_score] Attached match_scores for job_id: {job_id}")
+            print(f"[calculate_match_score] Attached match_scores for job_id: {job_id}")
 
-    logger("[calculate_match_score] Sorting results by overall match score...")
+    print("[calculate_match_score] Sorting results by overall match score...")
     match_results = sorted(
         match_results,
         key=lambda x: x.get("match_scores", {}).get("overall_score", 0),
         reverse=True,
     )
 
-    logger("[calculate_match_score] DONE. Returning results.")
+    print("[calculate_match_score] DONE. Returning results.")
     return match_results
 
 ###############################################################################
