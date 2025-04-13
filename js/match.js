@@ -51,6 +51,10 @@ function loadJoblist() {{
     loadAJob(0)
 }}
 
+function applyJob(index) {{
+    window.parent.open(matching_data[index]['web_url'], '_blank');
+}}
+
 function loadAJob(index) {{
     console.log(index);
     const parentDocument = window.parent.document;
@@ -70,6 +74,11 @@ function loadAJob(index) {{
         const details = job["details"]
         const mandatory = job["mandatory"]
         const preferred = job["preferred"]
+        const web_url = job["web_url"]
+        if(web_url) {{
+            console.log(web_url);
+            html += "<div id='apply_now'><button onclick=document.querySelector(\"iframe\").contentWindow.applyJob(" + index + ")>Appy Now</button></div>";
+        }}
         let company_name = "";
         if(details['company_name'] && details['company_name'].length > 0) {{
             company_name = " at " + details['company_name'].join('<br>');
