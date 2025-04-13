@@ -190,7 +190,7 @@ h1 {
     padding: 2rem 0 1rem 0;
 }
 
-li.score_item, li.skill-item {
+li.score_item, li.skill-item, div.skill-item {
     font-family: montserrat, sans-serif;
     font-size: 19px;
     font-style: normal;

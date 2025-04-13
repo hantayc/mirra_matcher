@@ -1,141 +1,5948 @@
-[{"details": {"wage": [],
-   "benefits": {"fsa": false,
-    "hsa": false,
-    "bonus": false,
-    "other": [],
-    "dental": false,
-    "equity": false,
-    "vision": false,
-    "medical": false,
-    "401k_match": false,
-    "mental_health": false,
-    "unlimited_pto": false,
-    "tuition_reimbursement": false},
-   "location": [{"city": "Windsor", "state": "CT", "country": "US"}],
-   "job_title": ["Salesforce Business Analyst with SCM/ logistics domain Experience"],
-   "tax_terms": ["Direct-hire contract",
-    "Contract Corp-to-Corp",
-    "Contract W2",
-    "Full-time"],
-   "wfh_policy": ["Onsite"],
-   "company_name": ["Techgene"],
-   "company_stage": [],
-   "work_schedule": [],
-   "job_title_base": ["Salesforce Business Analyst"],
-   "employment_type": [],
-   "travel_required": {"required": false, "hours_weekly": 0},
-   "company_industry": [],
-   "experience_level": [],
-   "work_authorization": []},
-  "mandatory": {"education": [],
-   "credentials": [],
-   "hard_skills": [{"skill": [["Business Analyst"]], "minyears": [5]},
-    {"skill": [["Microsoft Office Suite"]], "minyears": [0]},
-    {"skill": [["Word"]], "minyears": [0]},
-    {"skill": [["Excel"]], "minyears": [0]},
-    {"skill": [["PowerPoint"]], "minyears": [0]},
-    {"skill": [["Data analysis tools"], ["SQL"], ["Tableau"]],
-     "minyears": [0]}],
-   "professional_background": [{"industry": ["SCM", "logistics"],
-     "minyears": [0],
-     "background": [["Business Analyst"]]}]},
-  "preferred": {"education": [],
-   "credentials": [],
-   "hard_skills": [{"skill": [["Project management methodologies"],
-      ["Agile"],
-      ["Waterfall"]],
-     "minyears": [0]}],
-   "professional_background": []},
-  "responsibility": {"hard_skills": [{"skill": [["Analyzing business challenges"]]},
-    {"skill": [["designing solutions"]]},
-    {"skill": [["implementing solutions"]]},
-    {"skill": [["driving measurable business impact"]]}]},
-  "job_id": "cbbc9bbc-2f21-451f-ac20-01e4f2c611e1",
-  "match_scores": {"mandatory_background_score": 0.7051539023717246,
-   "mandatory_industry_score": 0.6039732297261557,
-   "preferred_background_score": "",
-   "preferred_industry_score": "",
-   "mandatory_education_score": "",
-   "preferred_education_score": "",
-   "mandatory_credentials_score": "",
-   "preferred_credentials_score": "",
-   "responsibilities_score": 0.7335989773273469,
-   "mandatory_skill_score": 0.6934332781367835,
-   "preferred_skill_score": 0.6572391192118329,
-   "overall_mandatory": 0.7107287192786184,
-   "overall_preferred": 0.6572391192118329,
-   "overall_score": 0.6839839192452256,
-   "overall_skills": 0.6753361986743082,
-   "overall_education": "",
-   "overall_background": 0.7051539023717246,
-   "overall_credentials": ""}},{"details": {"wage": [],
-   "benefits": {"fsa": false,
-    "hsa": false,
-    "bonus": false,
-    "other": [],
-    "dental": false,
-    "equity": false,
-    "vision": false,
-    "medical": false,
-    "401k_match": false,
-    "mental_health": false,
-    "unlimited_pto": false,
-    "tuition_reimbursement": false},
-   "location": [{"city": "Windsor", "state": "CT", "country": "US"}],
-   "job_title": ["Salesforce Business Analyst with SCM/ logistics domain Experience"],
-   "tax_terms": ["Direct-hire contract",
-    "Contract Corp-to-Corp",
-    "Contract W2",
-    "Full-time"],
-   "wfh_policy": ["Onsite"],
-   "company_name": ["Dropbox"],
-   "company_stage": [],
-   "work_schedule": [],
-   "job_title_base": ["Mobile Infrastructure Software Engineer"],
-   "employment_type": [],
-   "travel_required": {"required": false, "hours_weekly": 0},
-   "company_industry": [],
-   "experience_level": [],
-   "work_authorization": []},
-  "mandatory": {"education": [],
-   "credentials": [],
-   "hard_skills": [{"skill": [["Business Analyst"]], "minyears": [5]},
-    {"skill": [["Microsoft Office Suite"]], "minyears": [0]},
-    {"skill": [["Word"]], "minyears": [0]},
-    {"skill": [["Excel"]], "minyears": [0]},
-    {"skill": [["PowerPoint"]], "minyears": [0]},
-    {"skill": [["Data analysis tools"], ["SQL"], ["Tableau"]],
-     "minyears": [0]}],
-   "professional_background": [{"industry": ["SCM", "logistics"],
-     "minyears": [0],
-     "background": [["Business Analyst"]]}]},
-  "preferred": {"education": [],
-   "credentials": [],
-   "hard_skills": [{"skill": [["Project management methodologies"],
-      ["Agile"],
-      ["Waterfall"]],
-     "minyears": [0]}],
-   "professional_background": []},
-  "responsibility": {"hard_skills": [{"skill": [["Analyzing business challenges"]]},
-    {"skill": [["designing solutions"]]},
-    {"skill": [["implementing solutions"]]},
-    {"skill": [["driving measurable business impact"]]}]},
-  "job_id": "058e8534-bb39-4239-90ab-ccbf76445338",
-  "match_scores": {"mandatory_background_score": 0.7051539023717246,
-   "mandatory_industry_score": 0.6039732297261557,
-   "preferred_background_score": "",
-   "preferred_industry_score": "",
-   "mandatory_education_score": "",
-   "preferred_education_score": "",
-   "mandatory_credentials_score": "",
-   "preferred_credentials_score": "",
-   "responsibilities_score": 0.7335989773273469,
-   "mandatory_skill_score": 0.6934332781367835,
-   "preferred_skill_score": 0.6572391192118329,
-   "overall_mandatory": 0.7107287192786184,
-   "overall_preferred": 0.6572391192118329,
-   "overall_score": 0.6539839192452256,
-   "overall_skills": 0.6753361986743082,
-   "overall_education": "",
-   "overall_background": 0.7051539023717246,
-   "overall_credentials": ""}}]
+[
+  {
+    "details": {
+      "wage": [],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [
+          "Comprehensive benefits",
+          "Continuous learning opportunities",
+          "Diverse, equitable and inclusive workplace",
+          "Employee Resource Groups (ERGs)"
+        ],
+        "dental": false,
+        "equity": false,
+        "vision": false,
+        "medical": false,
+        "401k_match": false,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "",
+          "state": "",
+          "country": "US"
+        }
+      ],
+      "job_title": [
+        "Cybersecurity & Technology Audit Internship (Summer 2025)"
+      ],
+      "tax_terms": [
+        "Direct-hire"
+      ],
+      "wfh_policy": [],
+      "company_name": [
+        "Liberty Mutual"
+      ],
+      "company_stage": [],
+      "work_schedule": [
+        "11-week internship"
+      ],
+      "job_title_base": [
+        "Cybersecurity & Technology Audit Intern"
+      ],
+      "employment_type": [
+        "Full-time"
+      ],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [
+        "Insurance"
+      ],
+      "experience_level": [
+        "Internship"
+      ],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [
+        {
+          "field_of_study": [
+            "Business Management",
+            "Management Information Systems",
+            "Computer Science",
+            "Related"
+          ],
+          "education_level": [
+            "Current Bachelor's Student"
+          ]
+        }
+      ],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Technical programs"
+            ],
+            [
+              "Excel"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": [
+        {
+          "industry": [],
+          "minyears": [
+            0
+          ],
+          "background": [
+            [
+              "Work Experience"
+            ]
+          ]
+        }
+      ]
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Interviewing personnel"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Performing testwork"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Analyzing results"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Communicating issues",
+              "managers"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Participating in audit project teams",
+              "complete risk assessments",
+              "control evaluations",
+              "IT areas under review"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_53acdd0a-467a-413e-9486-42a2b86b5c66",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 1,
+      "preferred_skill_score": null,
+      "overall_mandatory": 1,
+      "overall_preferred": null,
+      "overall_score": 1,
+      "overall_skills": 1,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [
+        {
+          "max": 85000,
+          "min": 85000,
+          "pay_type": "Salary",
+          "wage_city": [],
+          "wage_state": []
+        }
+      ],
+      "benefits": {
+        "fsa": true,
+        "hsa": true,
+        "bonus": false,
+        "other": [
+          "Profit sharing plan",
+          "Annual increases",
+          "Up to 4 weeks PTO"
+        ],
+        "dental": false,
+        "equity": false,
+        "vision": false,
+        "medical": false,
+        "401k_match": true,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [],
+      "job_title": [
+        "Tableau Developer"
+      ],
+      "tax_terms": [
+        "Direct-hire"
+      ],
+      "wfh_policy": [
+        "Remote"
+      ],
+      "company_name": [],
+      "company_stage": [],
+      "work_schedule": [],
+      "job_title_base": [
+        "Tableau Developer"
+      ],
+      "employment_type": [
+        "Full-time"
+      ],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [],
+      "experience_level": [],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Tableau"
+            ]
+          ],
+          "minyears": [
+            2
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Data modeling"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "administration"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Managing permissions",
+              "data access"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Making data available",
+              "the enterprise data warehouse",
+              "Tableau"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Managing permissions"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Ensuring the quality",
+              "data joins"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Integrating new data sources"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Working",
+              "the BI team"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_639fb093-26a8-4745-9656-ee93f3b79f19",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.9707044363021851,
+      "preferred_skill_score": null,
+      "overall_mandatory": 0.9707044363021851,
+      "overall_preferred": null,
+      "overall_score": 0.9707044959068298,
+      "overall_skills": 0.9707044363021851,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [],
+        "dental": false,
+        "equity": false,
+        "vision": false,
+        "medical": false,
+        "401k_match": false,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "Greenwood Village",
+          "state": "CO",
+          "country": "US"
+        }
+      ],
+      "job_title": [
+        "Immediate interview for Data Developer - Hybrid"
+      ],
+      "tax_terms": [
+        "Contract",
+        "Contract W2"
+      ],
+      "wfh_policy": [
+        "Hybrid"
+      ],
+      "company_name": [
+        "Cerebra Consulting Inc"
+      ],
+      "company_stage": [],
+      "work_schedule": [],
+      "job_title_base": [
+        "Data Developer"
+      ],
+      "employment_type": [],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [
+        "System Integrator and IT Services Solution provider"
+      ],
+      "experience_level": [],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "SQL Query"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Data visualization"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Data Analytics"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "analytical projects"
+            ],
+            [
+              "business needs"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Networking background"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Scripting"
+            ],
+            [
+              "Python"
+            ],
+            [
+              "Bash"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "AWS"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Version control"
+            ],
+            [
+              "Git"
+            ],
+            [
+              "Gitlab"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Creating data visualizations"
+            ],
+            [
+              "Creating reports"
+            ],
+            [
+              "Creating dashboards"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Analyzing data",
+              "SQL",
+              "support several new projects",
+              "Spectrum's in-home WiFi network",
+              "hardware"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Working with engineering teams",
+              "support them",
+              "identifying negative customer experience",
+              "in-home wifi products"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Working with firmware teams",
+              "support them",
+              "identifying negative customer experience",
+              "in-home wifi products"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_3d6abfd2-971f-4279-bd5c-e2608afb27b8",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 1,
+      "preferred_skill_score": 0.75,
+      "overall_mandatory": 1,
+      "overall_preferred": 0.75,
+      "overall_score": 0.9500000000000001,
+      "overall_skills": 0.875,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [
+        {
+          "max": 60,
+          "min": 50,
+          "pay_type": "Hourly",
+          "wage_city": [
+            "Pittsburgh",
+            "Cleveland",
+            "Strongsville",
+            "Dallas",
+            "Birmingham"
+          ],
+          "wage_state": [
+            "PA",
+            "OH",
+            "OH",
+            "TX",
+            "AL"
+          ]
+        }
+      ],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [],
+        "dental": false,
+        "equity": false,
+        "vision": false,
+        "medical": false,
+        "401k_match": false,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "Pittsburgh",
+          "state": "PA",
+          "country": "US"
+        },
+        {
+          "city": "Cleveland",
+          "state": "OH",
+          "country": "US"
+        },
+        {
+          "city": "Strongsville",
+          "state": "OH",
+          "country": "US"
+        },
+        {
+          "city": "Dallas",
+          "state": "TX",
+          "country": "US"
+        },
+        {
+          "city": "Birmingham",
+          "state": "AL",
+          "country": "US"
+        }
+      ],
+      "job_title": [
+        "Cyber Security Analyst",
+        "Security Specialist",
+        "Security Analyst"
+      ],
+      "tax_terms": [
+        "Contract",
+        "Contract W2"
+      ],
+      "wfh_policy": [
+        "Hybrid"
+      ],
+      "company_name": [],
+      "company_stage": [],
+      "work_schedule": [],
+      "job_title_base": [
+        "Cyber Security Analyst"
+      ],
+      "employment_type": [],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [],
+      "experience_level": [],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Security concepts"
+            ],
+            [
+              "controls"
+            ],
+            [
+              "industry frameworks"
+            ],
+            [
+              "NIST"
+            ],
+            [
+              "FFIEC"
+            ],
+            [
+              "CRI Profile"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Mitigation methodologies"
+            ],
+            [
+              "regulatory requirements"
+            ],
+            [
+              "information security"
+            ],
+            [
+              "privacy"
+            ],
+            [
+              "data security"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Supporting toolsets"
+            ],
+            [
+              "SharePoint"
+            ],
+            [
+              "Jira"
+            ],
+            [
+              "Confluence"
+            ],
+            [
+              "Tableau"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Third Party platforms"
+            ],
+            [
+              "Archer"
+            ],
+            [
+              "KY3P"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Third Party Risk Management"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Products"
+            ],
+            [
+              "bonds"
+            ],
+            [
+              "CDS"
+            ],
+            [
+              "leveraged loans"
+            ],
+            [
+              "equities"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Capital structures"
+            ],
+            [
+              "issuer relationships"
+            ],
+            [
+              "debt guarantees"
+            ],
+            [
+              "corporate actions"
+            ],
+            [
+              "succession events"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Investment data sources"
+            ],
+            [
+              "Bloomberg"
+            ],
+            [
+              "Paladyne"
+            ],
+            [
+              "Markit"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Microsoft Excel skills"
+            ],
+            [
+              "Bloomberg Excel API"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "System integrity"
+            ],
+            [
+              "data validation"
+            ],
+            [
+              "Order Management Systems"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Set up securities",
+              "all asset classes",
+              "proprietary operations systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Set up securities",
+              "all asset classes",
+              "third-party operations systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Set up securities",
+              "all asset classes",
+              "accounting systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "update securities",
+              "all asset classes",
+              "proprietary operations systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "update securities",
+              "all asset classes",
+              "third-party operations systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "update securities",
+              "all asset classes",
+              "accounting systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "maintain securities",
+              "all asset classes",
+              "proprietary operations systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "maintain securities",
+              "all asset classes",
+              "third-party operations systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "maintain securities",
+              "all asset classes",
+              "accounting systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Initiate reference data",
+              "securities"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "maintain reference data",
+              "securities"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Initiate reference data",
+              "issuers"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "maintain reference data",
+              "issuers"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Create reports"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Create control checks"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "correct security data",
+              "firm trading systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Respond to inquiries",
+              "security master functions"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Diagnose data exceptions"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "recommend controls"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "develop controls"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "ensure accuracy"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Maintain security master data",
+              "security reference data"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Maintain security master data",
+              "derived data"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Maintain security master data",
+              "fundamental data"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Maintain security master data",
+              "analytic data"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "maintain workflows",
+              "maintaining the data"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Applies security concepts"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "reviews information"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "executes defined tasks"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "analyzes requirements"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "reviews logs"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "creates documentation"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Performs investigation"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "data loss prevention"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "data manipulation"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "coordination of activities"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Performs actions",
+              "address risks"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Performs actions",
+              "mitigate risks"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Performs actions",
+              "address vulnerabilities"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Performs actions",
+              "mitigate vulnerabilities"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Reviews controls"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "defines controls"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Advises",
+              "less complex security procedures"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Advises",
+              "less complex security products"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Advises",
+              "clients"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Advises",
+              "security administrators"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Advises",
+              "network operations"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Participates",
+              "enforcement of control security risks"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Participates",
+              "enforcement of threats"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Conducts security assessments"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Conducts information security routines"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_4016ff28-f2a9-4e9d-8ce8-4498679286a2",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 1,
+      "preferred_skill_score": 0.5714285714285714,
+      "overall_mandatory": 1,
+      "overall_preferred": 0.5714285714285714,
+      "overall_score": 0.9142857142857144,
+      "overall_skills": 0.7857142857142857,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [
+        {
+          "max": 30,
+          "min": 30,
+          "pay_type": "Hourly",
+          "wage_city": [
+            "Dearborn"
+          ],
+          "wage_state": [
+            "MI"
+          ]
+        }
+      ],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [],
+        "dental": false,
+        "equity": false,
+        "vision": false,
+        "medical": false,
+        "401k_match": false,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "Dearborn",
+          "state": "MI",
+          "country": "US"
+        }
+      ],
+      "job_title": [
+        "Junior Dynamic 365 role"
+      ],
+      "tax_terms": [
+        "Contract",
+        "Contract W2"
+      ],
+      "wfh_policy": [
+        "Hybrid"
+      ],
+      "company_name": [],
+      "company_stage": [],
+      "work_schedule": [],
+      "job_title_base": [
+        "Junior Dynamic 365"
+      ],
+      "employment_type": [],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [],
+      "experience_level": [
+        "Entry Level"
+      ],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Dynamics 365"
+            ]
+          ],
+          "minyears": [
+            1
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Azure Cloud"
+            ]
+          ],
+          "minyears": [
+            1
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Azure DevOps"
+            ]
+          ],
+          "minyears": [
+            1
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Powershell"
+            ]
+          ],
+          "minyears": [
+            1
+          ]
+        },
+        {
+          "skill": [
+            [
+              "JavaScript"
+            ]
+          ],
+          "minyears": [
+            1
+          ]
+        },
+        {
+          "skill": [
+            [
+              "YAML"
+            ]
+          ],
+          "minyears": [
+            1
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Deploying Dynamics application"
+            ]
+          ],
+          "minyears": [
+            1
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Deploying Azure application"
+            ]
+          ],
+          "minyears": [
+            1
+          ]
+        },
+        {
+          "skill": [
+            [
+              "front-line customer support"
+            ]
+          ],
+          "minyears": [
+            1
+          ]
+        },
+        {
+          "skill": [
+            [
+              "service desk"
+            ]
+          ],
+          "minyears": [
+            1
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              ".NET"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "C#"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Visual Studio"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "MVC"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Azure SQL Server"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Data Export Service"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Azure Synapse"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "SSIS"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Azure Data Factory"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Azure Logic Apps"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Power Automate"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Cloud Flows"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Azure Command Line Interface"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Azure Key Vault"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Managed Identity"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Azure Monitor"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Application Insights"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Azure Active Directory"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "AAD"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "oauth 2.0"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Canvas Apps"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Power Apps Portals"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Azure Function Apps"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Azure Service Bus"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Assist issue triage"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "lead issue triage"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "analysis"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "resolution in production environment"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Actively participate",
+              "DevOps Product Delivery Organization"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "agile ceremonies"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Provide technical consulting support",
+              "PDO teams"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_181b9a3d-71ca-420e-8ea8-08b348ad69f2",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.9718881845474243,
+      "preferred_skill_score": 0.5833333333333334,
+      "overall_mandatory": 0.9718881845474243,
+      "overall_preferred": 0.5833333333333334,
+      "overall_score": 0.894177258014679,
+      "overall_skills": 0.7776107788085938,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [
+        {
+          "max": 174130,
+          "min": 129806,
+          "pay_type": "Salary",
+          "wage_city": [],
+          "wage_state": []
+        }
+      ],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": true,
+        "other": [
+          "long-term incentive units",
+          "full range of medical, financial, and/or other benefits"
+        ],
+        "dental": false,
+        "equity": false,
+        "vision": false,
+        "medical": true,
+        "401k_match": false,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "",
+          "state": "WA",
+          "country": "US"
+        },
+        {
+          "city": "",
+          "state": "CA",
+          "country": "US"
+        }
+      ],
+      "job_title": [
+        "Senior Process Engineer Analyst"
+      ],
+      "tax_terms": [
+        "Direct-hire"
+      ],
+      "wfh_policy": [],
+      "company_name": [],
+      "company_stage": [],
+      "work_schedule": [],
+      "job_title_base": [
+        "Senior Process Engineer Analyst"
+      ],
+      "employment_type": [
+        "Full-time"
+      ],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [],
+      "experience_level": [
+        "Senior"
+      ],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [
+        {
+          "field_of_study": [
+            "Computer Science",
+            "Information Systems",
+            "Software Engineering",
+            "Electrical Engineering",
+            "Electronics Engineering",
+            "Related"
+          ],
+          "education_level": [
+            "Bachelor's",
+            "Or Experience"
+          ]
+        }
+      ],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "related work experience"
+            ]
+          ],
+          "minyears": [
+            5
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Process improvement"
+            ],
+            [
+              "quality engineering"
+            ],
+            [
+              "industrial engineering"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "ITIL"
+            ],
+            [
+              "Dev Ops"
+            ],
+            [
+              "Lean"
+            ],
+            [
+              "Six Sigma"
+            ],
+            [
+              "Capability Maturity Model"
+            ],
+            [
+              "CMMI"
+            ],
+            [
+              "IT4IT"
+            ],
+            [
+              "TOGAF"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Understanding process issues",
+              "the organization",
+              "coming up with creative solutions",
+              "drive cost efficiencies"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Using simple processes",
+              "optimize the end-to-end environment"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Identifying strengths",
+              "areas for process improvement",
+              "establishing links",
+              "business strategies",
+              "improvement initiatives"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Modeling business processes",
+              "a variety of tools",
+              "techniques"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Providing knowledge",
+              "expertise",
+              "the design",
+              "improvement of processes"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Performing root cause analysis",
+              "creating recommendations",
+              "improvement"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Meeting",
+              "business and technical leaders",
+              "identify and scope opportunities",
+              "outline potential value",
+              "return on investment",
+              "identify risks",
+              "constraints"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Assisting Senior Architects",
+              "interpreting internal and external business issues",
+              "recommending best practices"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Tackling sophisticated problems",
+              "taking a broad perspective",
+              "identify innovative solutions"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Analyzing data",
+              "trends",
+              "recommending possible improvements",
+              "solutions"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Gathering the tactical and strategic business goals",
+              "provide traceability",
+              "the organization",
+              "mapping them",
+              "metrics",
+              "provide ongoing governance capability"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Evaluating existing processes",
+              "interviews",
+              "workshops",
+              "document analysis",
+              "surveys",
+              "Kaizen Events",
+              "user scenarios",
+              "process maps",
+              "task and workflow analysis"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Facilitating and leading tiger team meetings"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Enumerating",
+              "analyzing",
+              "cataloging",
+              "suggesting improvements",
+              "the strategic, core, and support processes",
+              "the business"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Defining the data elements",
+              "the various business units",
+              "the enterprise",
+              "the relationships",
+              "those data elements",
+              "processes",
+              "people",
+              "systems",
+              "other process elements"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Evaluating existing processes",
+              "interviews",
+              "workshops",
+              "document analysis",
+              "surveys",
+              "Kaizen Events",
+              "user scenarios",
+              "process maps",
+              "task and workflow analysis"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_2fd8af11-4583-4d06-822b-fad7c0c3bc9a",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.8233675360679626,
+      "preferred_skill_score": null,
+      "overall_mandatory": 0.8233675360679626,
+      "overall_preferred": null,
+      "overall_score": 0.8233675360679626,
+      "overall_skills": 0.8233675360679626,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [],
+        "dental": false,
+        "equity": false,
+        "vision": false,
+        "medical": false,
+        "401k_match": false,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "",
+          "state": "",
+          "country": "Remote"
+        }
+      ],
+      "job_title": [
+        [
+          "Data Analyst"
+        ],
+        [
+          "Data Specialist"
+        ]
+      ],
+      "tax_terms": [
+        [
+          "Contract"
+        ],
+        [
+          "Contract W2"
+        ]
+      ],
+      "wfh_policy": [
+        "Remote"
+      ],
+      "company_name": [],
+      "company_stage": [],
+      "work_schedule": [],
+      "job_title_base": [
+        [
+          "Data Analyst"
+        ],
+        [
+          "Data Specialist"
+        ]
+      ],
+      "employment_type": [
+        "Contract"
+      ],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [],
+      "experience_level": [],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [
+        {
+          "field_of_study": [],
+          "education_level": [
+            "Bachelor's"
+          ]
+        }
+      ],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "data validation"
+            ]
+          ],
+          "minyears": [
+            2
+          ]
+        },
+        {
+          "skill": [
+            [
+              "data integrity"
+            ]
+          ],
+          "minyears": [
+            2
+          ]
+        },
+        {
+          "skill": [
+            [
+              "data cleanup"
+            ]
+          ],
+          "minyears": [
+            2
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Excel"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "pulling reports"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "combining data"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "VLOOKUPs"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Salesforce Sales Cloud"
+            ],
+            [
+              "other CRMs"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "MS Excel"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "V-Lookups"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Pivot tables"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Salesforce"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "searching information"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "entering information"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Take charge of data cleansing efforts",
+              "Excel",
+              "accuracy",
+              "reliability"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Collaborate closely",
+              "cross-functional teams",
+              "data",
+              "prepared appropriately"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Maintain system documentation"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "update leads"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "update opportunities"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "align external data",
+              "internal B2B and B2C Salesforce database"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_96051542-318e-4fd1-aea9-035cd9a74fe5",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.875,
+      "preferred_skill_score": 0.5,
+      "overall_mandatory": 0.875,
+      "overall_preferred": 0.5,
+      "overall_score": 0.8,
+      "overall_skills": 0.6875,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [
+        {
+          "max": 150000,
+          "min": 135000,
+          "pay_type": "Salary",
+          "wage_city": [
+            "New York"
+          ],
+          "wage_state": [
+            "NY"
+          ]
+        }
+      ],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [
+          "Life insurance plan",
+          "Career advancement opportunity",
+          "Tight-knit company culture where employees are treated like family"
+        ],
+        "dental": true,
+        "equity": false,
+        "vision": true,
+        "medical": true,
+        "401k_match": true,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "New York",
+          "state": "NY",
+          "country": "US"
+        }
+      ],
+      "job_title": [
+        "D365 Financial Systems Architect - New York, NY - $150k"
+      ],
+      "tax_terms": [
+        "Direct-hire"
+      ],
+      "wfh_policy": [
+        "Remote"
+      ],
+      "company_name": [
+        "Nigel Frank International"
+      ],
+      "company_stage": [],
+      "work_schedule": [],
+      "job_title_base": [
+        "D365 Financial Systems Architect"
+      ],
+      "employment_type": [
+        "Full-time"
+      ],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [
+        "Non-profit",
+        "Environmental Services"
+      ],
+      "experience_level": [],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "D365 Business Central"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Business Central ERP implementation"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Leading consolidation projects",
+              "intercompany transactions",
+              "multi-entity deployments"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Accounting and operations processes"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Power BI"
+            ],
+            [
+              "SQL"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Act as the subject matter expert",
+              "Business Central implementation"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Managing other integrated applications",
+              "finance",
+              "purchasing",
+              "payables",
+              "invoicing"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Support the completion",
+              "technology aspects",
+              "continuous improvement initiatives"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Work alongside finance dept. stakeholders",
+              "understanding their business needs",
+              "designing systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Analyze business processes",
+              "identify fit and gap",
+              "business requirements",
+              "system functionality"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Modify",
+              "production plans",
+              "inputs",
+              "finance",
+              "purchasing"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Update production plans",
+              "inputs",
+              "finance",
+              "purchasing"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Customize workflows",
+              "track and record business functionality",
+              "control standards"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Support and train users",
+              "systems functionality"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Assist with reporting efforts",
+              "Power BI"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_a7df6bed-41c2-4ccd-a3a1-d0bfb90adf5e",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.75,
+      "preferred_skill_score": 1,
+      "overall_mandatory": 0.75,
+      "overall_preferred": 1,
+      "overall_score": 0.8,
+      "overall_skills": 0.875,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [],
+        "dental": false,
+        "equity": false,
+        "vision": false,
+        "medical": false,
+        "401k_match": false,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "Charlotte",
+          "state": "NC",
+          "country": "US"
+        },
+        {
+          "city": "Buffalo",
+          "state": "NY",
+          "country": "US"
+        }
+      ],
+      "job_title": [
+        "Product Manager - Product Accounting"
+      ],
+      "tax_terms": [
+        "Contract",
+        "Contract W2"
+      ],
+      "wfh_policy": [
+        "Remote"
+      ],
+      "company_name": [],
+      "company_stage": [],
+      "work_schedule": [],
+      "job_title_base": [
+        "Product Manager"
+      ],
+      "employment_type": [
+        "Contract"
+      ],
+      "travel_required": {
+        "required": true,
+        "hours_weekly": 8
+      },
+      "company_industry": [],
+      "experience_level": [],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Product Management"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Test cases"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "user adoption"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "solution design"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "delivering epics"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "ERP financial implementation"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Financial Acumen"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "banking industry experience"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": [
+        {
+          "industry": [],
+          "minyears": [
+            0
+          ],
+          "background": [
+            [
+              "Product Accounting"
+            ]
+          ]
+        }
+      ]
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Oracle Cloud"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Define a strategic product roadmap"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "execute a strategic product roadmap"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "outlining key milestones"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "outlining feature releases"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "outlining continuous improvement initiatives"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Take ownership",
+              "the operational accounting product",
+              "the ERP program"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "overseeing development",
+              "the operational accounting product"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "overseeing enhancement",
+              "the operational accounting product"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "overseeing overall lifecycle",
+              "the operational accounting product"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Develop a deep understanding",
+              "operating units"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "specializing in Product Accounting"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Collaborate closely",
+              "business teams"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Collaborate closely",
+              "product teams"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Collaborate closely",
+              "technology teams"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "ensure seamless communication"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "alignment of goals"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Contribute to solution design"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "working closely",
+              "technical teams"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "ensure the product meets business requirements"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Drive user adoption"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "actively engaging",
+              "business users"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "understanding their needs"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "incorporating feedback",
+              "product development"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Oversee the creation",
+              "test cases"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "execution of test cases"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "ensure product quality"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "ensure product reliability"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_0c9591b9-68aa-4d93-81a4-c090753a43d5",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.5,
+      "preferred_skill_score": 1,
+      "overall_mandatory": 0.5,
+      "overall_preferred": 1,
+      "overall_score": 0.6000000000000001,
+      "overall_skills": 0.75,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [
+        {
+          "max": 27,
+          "min": 23,
+          "pay_type": "Hourly",
+          "wage_city": [
+            "Calhoun"
+          ],
+          "wage_state": [
+            "GA"
+          ]
+        }
+      ],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [],
+        "dental": true,
+        "equity": false,
+        "vision": true,
+        "medical": true,
+        "401k_match": true,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "Calhoun",
+          "state": "GA",
+          "country": "US"
+        }
+      ],
+      "job_title": [
+        "Desktop Support Analyst"
+      ],
+      "tax_terms": [
+        "Direct-hire"
+      ],
+      "wfh_policy": [],
+      "company_name": [
+        "Robert Half"
+      ],
+      "company_stage": [],
+      "work_schedule": [],
+      "job_title_base": [
+        "Desktop Support Analyst"
+      ],
+      "employment_type": [
+        "Full-time"
+      ],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [],
+      "experience_level": [],
+      "work_authorization": [
+        "Does Not Offer Sponsorship"
+      ]
+    },
+    "mandatory": {
+      "education": [
+        {
+          "field_of_study": [
+            "Information Technology",
+            "Computer Science",
+            "Related"
+          ],
+          "education_level": [
+            "Bachelor's"
+          ]
+        }
+      ],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Managing Active Directory"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Managing Microsoft Office 365"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Microsoft SCCM"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Intune"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Relevant software and hardware systems"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": [
+        {
+          "industry": [],
+          "minyears": [
+            0
+          ],
+          "background": [
+            [
+              "Desktop Support Analyst"
+            ],
+            [
+              "similar role"
+            ]
+          ]
+        }
+      ]
+    },
+    "preferred": {
+      "education": [
+        {
+          "field_of_study": [
+            "Information Technology",
+            "Computer Science",
+            "Related"
+          ],
+          "education_level": [
+            "Bachelor's"
+          ]
+        }
+      ],
+      "credentials": [],
+      "hard_skills": [],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Address user tickets",
+              "hardware"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Address user tickets",
+              "software"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Address user tickets",
+              "networking connectivity"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Address user tickets",
+              "telephony"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Install Microsoft products",
+              "Office 365"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Install Microsoft products",
+              "Windows OS"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "support Microsoft products",
+              "Office 365"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "support Microsoft products",
+              "Windows OS"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Guide users",
+              "step-by-step instructions",
+              "installing applications"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Guide users",
+              "step-by-step instructions",
+              "computer peripherals"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Conduct remote troubleshooting"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "test alternative pathways",
+              "issues resolved"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Maintain ownership",
+              "tickets",
+              "closure"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "making necessary desktop alterations",
+              "user needs"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Record technical issues",
+              "logs"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Record solutions",
+              "logs"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Direct unresolved issues",
+              "next level of support personnel"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Perform minor administration",
+              "backend servers"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "virus updates"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "backup scheduling"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "software fixes"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Follow up",
+              "clients",
+              "systems functional"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Report customer feedback"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Report potential satisfaction concerns"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_27b81e47-a357-4bc9-bf00-3a854b2c03f1",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.6,
+      "preferred_skill_score": null,
+      "overall_mandatory": 0.6,
+      "overall_preferred": null,
+      "overall_score": 0.6,
+      "overall_skills": 0.6,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [],
+        "dental": false,
+        "equity": false,
+        "vision": false,
+        "medical": false,
+        "401k_match": false,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "Dallas",
+          "state": "TX",
+          "country": "US"
+        },
+        {
+          "city": "Jersey City",
+          "state": "NJ",
+          "country": "US"
+        },
+        {
+          "city": "Atlanta",
+          "state": "GA",
+          "country": "US"
+        },
+        {
+          "city": "Charlotte",
+          "state": "NC",
+          "country": "US"
+        }
+      ],
+      "job_title": [
+        "OpenShift Architect"
+      ],
+      "tax_terms": [
+        "Direct-hire",
+        "Contract W2"
+      ],
+      "wfh_policy": [
+        "Hybrid"
+      ],
+      "company_name": [],
+      "company_stage": [],
+      "work_schedule": [
+        "3 days hybrid"
+      ],
+      "job_title_base": [
+        "Architect"
+      ],
+      "employment_type": [
+        "Full-time",
+        "Part-time"
+      ],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [],
+      "experience_level": [
+        "Senior"
+      ],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [
+        {
+          "field_of_study": [
+            "Computer Science",
+            "Engineering",
+            "Related"
+          ],
+          "education_level": [
+            "Bachelor's"
+          ]
+        }
+      ],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Architect",
+              "Java applications environment"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "OpenShift"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "deployment"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "configuration"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "management"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Java"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Spring Framework"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "related technologies"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "CI/CD pipelines"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "DevOps practices"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "preferred": {
+      "education": [
+        {
+          "field_of_study": [
+            "Computer Science",
+            "Engineering",
+            "Related"
+          ],
+          "education_level": [
+            "Master's"
+          ]
+        }
+      ],
+      "credentials": [],
+      "hard_skills": [],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Design",
+              "scalable architectures",
+              "Java applications",
+              "OpenShift"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Design",
+              "reliable architectures",
+              "Java applications",
+              "OpenShift"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Design",
+              "secure architectures",
+              "Java applications",
+              "OpenShift"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "implement scalable architectures",
+              "Java applications",
+              "OpenShift"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "implement reliable architectures",
+              "Java applications",
+              "OpenShift"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "implement secure architectures",
+              "Java applications",
+              "OpenShift"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Develop architectural blueprints"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Develop detailed documentation",
+              "guide development teams"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Ensure alignment",
+              "industry best practices"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Ensure alignment",
+              "company standards"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Lead deployment",
+              "OpenShift clusters"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Lead configuration",
+              "OpenShift clusters"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Lead management",
+              "OpenShift clusters"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Optimize OpenShift environments",
+              "performance"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Optimize OpenShift environments",
+              "scalability"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Optimize OpenShift environments",
+              "cost-efficiency"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Implement CI/CD pipelines",
+              "OpenShift tools"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "integrate CI/CD pipelines",
+              "existing DevOps processes"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Provide technical leadership",
+              "development",
+              "Java applications"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Provide technical leadership",
+              "deployment",
+              "Java applications"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Collaborate",
+              "development teams"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "ensure code quality"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "ensure performance"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "ensure security"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Troubleshoot",
+              "complex technical issues",
+              "Java applications"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "resolve complex technical issues",
+              "Java applications"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Work closely",
+              "cross-functional teams"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Mentor",
+              "junior architects"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Mentor",
+              "developers"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "guide junior architects"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "guide developers"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Participate",
+              "architectural reviews"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "provide constructive feedback"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Stay updated",
+              "latest trends",
+              "cloud computing"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Stay updated",
+              "latest trends",
+              "OpenShift"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Stay updated",
+              "latest trends",
+              "Java development"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Propose innovative solutions",
+              "improve application performance"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "implement innovative solutions",
+              "improve application performance"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Propose innovative solutions",
+              "improve developer productivity"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "implement innovative solutions",
+              "improve developer productivity"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Drive continuous improvement initiatives",
+              "enhance overall architecture"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Drive continuous improvement initiatives",
+              "enhance development processes"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_a45a153b-9da6-4c44-9390-b46a38181eca",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.6,
+      "preferred_skill_score": null,
+      "overall_mandatory": 0.6,
+      "overall_preferred": null,
+      "overall_score": 0.6,
+      "overall_skills": 0.6,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [
+        {
+          "max": 160000,
+          "min": 140000,
+          "pay_type": "Salary",
+          "wage_city": [
+            "SF"
+          ],
+          "wage_state": [
+            "CA"
+          ]
+        }
+      ],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [
+          "Opportunities for professional growth and development",
+          "PTO"
+        ],
+        "dental": true,
+        "equity": true,
+        "vision": true,
+        "medical": true,
+        "401k_match": false,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "SF",
+          "state": "CA",
+          "country": "US"
+        }
+      ],
+      "job_title": [
+        "Full Stack Software Engineer"
+      ],
+      "tax_terms": [
+        "Direct-hire"
+      ],
+      "wfh_policy": [
+        "Hybrid"
+      ],
+      "company_name": [
+        "An innovative startup company focused on security"
+      ],
+      "company_stage": [
+        "Startup"
+      ],
+      "work_schedule": [],
+      "job_title_base": [
+        "Full Stack Software Engineer"
+      ],
+      "employment_type": [
+        "Full-time"
+      ],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [
+        "Security"
+      ],
+      "experience_level": [
+        "Associate"
+      ],
+      "work_authorization": [
+        "Does Not Offer Sponsorship"
+      ]
+    },
+    "mandatory": {
+      "education": [
+        {
+          "field_of_study": [
+            "Computer Science",
+            "Related"
+          ],
+          "education_level": [
+            "Bachelor's"
+          ]
+        }
+      ],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Python development",
+              "Django"
+            ],
+            [
+              "Python development",
+              "Celery"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "React"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "JavaScript"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "API integration"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "data processing"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "data modeling"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Bash scripting",
+              "processing data"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Bash scripting",
+              "managing infrastructure tasks"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "complex pipelines",
+              "generating videos at scale"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "complex pipelines",
+              "scheduling videos at scale"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "complex pipelines",
+              "managing videos at scale"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "cloud platforms"
+            ],
+            [
+              "AWS"
+            ],
+            [
+              "Google Cloud Platform"
+            ],
+            [
+              "Azure"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "deploying scalable applications"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "DevOps practices"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "CI/CD pipelines"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Docker"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Develop full stack applications",
+              "Django",
+              "Python",
+              "the backend"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Develop full stack applications",
+              "JavaScript",
+              "React",
+              "the frontend"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Build user interfaces",
+              "employees",
+              "watch videos"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Build user interfaces",
+              "employees",
+              "schedule videos"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Build user interfaces",
+              "employees",
+              "record videos"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Collaborate on designing infrastructure",
+              "support video generation"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Collaborate on designing infrastructure",
+              "scheduling workflows"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Collaborate on implementing infrastructure",
+              "support video generation"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Collaborate on implementing infrastructure",
+              "scheduling workflows"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Build scalable pipelines",
+              "video generation"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Build scalable pipelines",
+              "processing at scale"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Develop backend systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "maintain backend systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Work on API integrations",
+              "model employee behavior",
+              "data",
+              "various customer-accessible APIs"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Work on API integrations",
+              "model employee behavior",
+              "various customer-accessible APIs"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Work on API integrations",
+              "model employee behavior",
+              "data"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_28b3cec4-9cc9-4817-b133-181c8958cc3a",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.5454545454545454,
+      "preferred_skill_score": 0.6,
+      "overall_mandatory": 0.5454545454545454,
+      "overall_preferred": 0.6,
+      "overall_score": 0.5563636363636364,
+      "overall_skills": 0.5727272727272728,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [
+        {
+          "max": 70,
+          "min": 65,
+          "pay_type": "Hourly",
+          "wage_city": [],
+          "wage_state": []
+        }
+      ],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [
+          "Paid sick leave"
+        ],
+        "dental": true,
+        "equity": false,
+        "vision": true,
+        "medical": true,
+        "401k_match": false,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [],
+      "job_title": [
+        "Senior Product Designer - Data - Remote"
+      ],
+      "tax_terms": [
+        "Direct-hire"
+      ],
+      "wfh_policy": [
+        "Remote"
+      ],
+      "company_name": [
+        "One of the world's leading providers of news and information-based tools to professionals"
+      ],
+      "company_stage": [],
+      "work_schedule": [],
+      "job_title_base": [
+        "Senior Product Designer"
+      ],
+      "employment_type": [
+        "Full-time"
+      ],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [],
+      "experience_level": [
+        "Senior"
+      ],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "product designer"
+            ],
+            [
+              "UX/UI designer"
+            ]
+          ],
+          "minyears": [
+            4
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Data visualization"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Designing data analytics tools"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Designing reporting tools"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Figma"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": []
+    },
+    "job_id": "job_2b2477c7-fafb-411f-b890-11cbb24d02e0",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.5164889693260193,
+      "preferred_skill_score": null,
+      "overall_mandatory": 0.5164889693260193,
+      "overall_preferred": null,
+      "overall_score": 0.5164889693260193,
+      "overall_skills": 0.5164889693260193,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [],
+        "dental": false,
+        "equity": false,
+        "vision": false,
+        "medical": false,
+        "401k_match": false,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "Frisco",
+          "state": "TX",
+          "country": "US"
+        }
+      ],
+      "job_title": [
+        "STIBO QA/BA"
+      ],
+      "tax_terms": [
+        "Contract",
+        "Contract W2",
+        "Contract Independent",
+        "Contract Corp to Corp"
+      ],
+      "wfh_policy": [],
+      "company_name": [],
+      "company_stage": [],
+      "work_schedule": [],
+      "job_title_base": [
+        "QA/BA"
+      ],
+      "employment_type": [],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [],
+      "experience_level": [],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "STIBO MDM"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Quality Assurance"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Testing"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "JIRA"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Agile Methodology"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Stibo"
+            ]
+          ],
+          "minyears": [
+            2
+          ]
+        },
+        {
+          "skill": [
+            [
+              "MDM"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "MDM engagement"
+            ]
+          ],
+          "minyears": [
+            5
+          ]
+        },
+        {
+          "skill": [
+            [
+              "STIBO Techno-Functional QA"
+            ]
+          ],
+          "minyears": [
+            1
+          ]
+        },
+        {
+          "skill": [
+            [
+              "STIBO Techno-Functional development"
+            ]
+          ],
+          "minyears": [
+            2
+          ]
+        },
+        {
+          "skill": [
+            [
+              "work with STIBO developers"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "work with architects"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "work with KDP business"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "understand functionality"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "prepare Integration test cases"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "prepare End-to-End test cases"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Identify test data needs"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Support UAT users"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Report defects"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "participate in defect triage"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": [
+        {
+          "industry": [],
+          "minyears": [
+            1
+          ],
+          "background": [
+            [
+              "QA"
+            ],
+            [
+              "BA"
+            ]
+          ]
+        }
+      ]
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "ERP implementation"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "ERP Upgrade"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "work with STIBO team"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "support the setup of QA environment"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Liaison with business"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "understand Business Scenarios"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "associate Business Scenarios",
+              "technical aspects of STIBO"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_42fa4a08-2737-4d2a-aa7a-5e17dfa822f8",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.25230735540390015,
+      "preferred_skill_score": 1,
+      "overall_mandatory": 0.25230735540390015,
+      "overall_preferred": 1,
+      "overall_score": 0.40184587240219116,
+      "overall_skills": 0.6261537075042725,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [
+        {
+          "max": 70,
+          "min": 70,
+          "pay_type": "Hourly",
+          "wage_city": [
+            "Columbus"
+          ],
+          "wage_state": [
+            "OH"
+          ]
+        }
+      ],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [],
+        "dental": false,
+        "equity": false,
+        "vision": false,
+        "medical": false,
+        "401k_match": false,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "Columbus",
+          "state": "OH",
+          "country": "US"
+        }
+      ],
+      "job_title": [
+        "Java/J2EE Architect - Columbus, OH (Hybrid)"
+      ],
+      "tax_terms": [
+        "Contract",
+        "Contract Corp to Corp",
+        "Contract W2"
+      ],
+      "wfh_policy": [
+        "Hybrid"
+      ],
+      "company_name": [
+        "Vector Consulting, Inc."
+      ],
+      "company_stage": [],
+      "work_schedule": [
+        "Hybrid"
+      ],
+      "job_title_base": [
+        "Java/J2EE Architect"
+      ],
+      "employment_type": [
+        "Contract"
+      ],
+      "travel_required": {
+        "required": true,
+        "hours_weekly": 0
+      },
+      "company_industry": [
+        "IT Talent Acquisition Solutions"
+      ],
+      "experience_level": [],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Java"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "JEE 5"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Java EE Batch Architecture"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Spring Framework"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Java EE Design Patterns"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "IDE"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "RAD 7.5"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Eclipse"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Spring Framework"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "MVC model"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Batch architecture"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Web Framework"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "JSF 2.0 Framework"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Messaging"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Asynchronous Messaging"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "JMS"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "MQ"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Persistence"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "JPA"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Java Persistence API 2.0"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "EJB 3.0"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Web Services"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "JAX-WS Web Services"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "XML"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        },
+        {
+          "skill": [
+            [
+              "JAXB"
+            ]
+          ],
+          "minyears": [
+            10
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Participation in the Ohio STARS project"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "agency STARS-related products"
+            ],
+            [
+              "PSRM"
+            ],
+            [
+              "PeopleSoft"
+            ],
+            [
+              "DataStage"
+            ],
+            [
+              "WebSphere ESB"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Architect solutions"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "design solutions"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "develop solutions"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Development of Web Services"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "support of Web Services"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Provide Production Support",
+              "various eCommerce applications"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Infrastructure upgrades",
+              "technical debt"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Migration of eCommerce applications",
+              "upgrade platform",
+              "WAS 9"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Migration of eCommerce applications",
+              "upgrade platform",
+              "RAD 9"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Migration of eCommerce applications",
+              "upgrade platform",
+              "JAVA 1.8"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Enhance eCommerce applications"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "migrate the backend",
+              "a platform other than Mainframe DB2"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "front end"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "back end"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "batch"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_a25c98ff-be8f-4ea4-b740-e459455d16b8",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.228796124458313,
+      "preferred_skill_score": 0.5,
+      "overall_mandatory": 0.228796124458313,
+      "overall_preferred": 0.5,
+      "overall_score": 0.2830369174480438,
+      "overall_skills": 0.3643980622291565,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [
+        {
+          "max": 60000,
+          "min": 50000,
+          "pay_type": "Salary",
+          "wage_city": [],
+          "wage_state": []
+        }
+      ],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": false,
+        "other": [
+          "Life insurance",
+          "Disability insurance",
+          "Employee Stock Ownership Plan (ESOP)",
+          "Competitive PTO",
+          "Holidays",
+          "Other financial incentives"
+        ],
+        "dental": true,
+        "equity": false,
+        "vision": true,
+        "medical": true,
+        "401k_match": true,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [],
+      "job_title": [
+        "Junior Estimator"
+      ],
+      "tax_terms": [
+        "Direct-hire"
+      ],
+      "wfh_policy": [],
+      "company_name": [
+        "John W. Danforth Company"
+      ],
+      "company_stage": [],
+      "work_schedule": [],
+      "job_title_base": [
+        "Junior Estimator"
+      ],
+      "employment_type": [
+        "Full-time"
+      ],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [
+        "Mechanical contracting"
+      ],
+      "experience_level": [
+        "Entry Level"
+      ],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [
+        {
+          "field_of_study": [],
+          "education_level": [
+            "Bachelor's",
+            "Or Experience"
+          ]
+        }
+      ],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "estimating HVAC projects"
+            ],
+            [
+              "estimating plumbing projects"
+            ],
+            [
+              "field equivalent"
+            ]
+          ],
+          "minyears": [
+            3
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Proficiency in Auto Bid Mechanical Estimating Software"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "knowledge of HVAC systems"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "knowledge of plumbing systems"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": [
+        {
+          "industry": [],
+          "minyears": [
+            0
+          ],
+          "background": [
+            [
+              "Work Experience"
+            ]
+          ]
+        }
+      ]
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Provide detailed quantity of labor and material takeoff",
+              "all systems"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Review and assess estimating documents",
+              "ensure successful low-bid outcomes"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Identify and report on risks"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Identify and report on opportunities"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Identify and report on scope"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Obtain competitive quotations"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "compare competitive quotations",
+              "a like-for-like basis"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Collaborate",
+              "a key member of the estimating team"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Attend pre-bid meetings"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "review bid documents",
+              "the Chief Estimator"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Foster relationships",
+              "subcontractors"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Foster relationships",
+              "suppliers"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Ensure the flow of project information",
+              "maintained and documented"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Participate in the hand-off of successful projects"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "a key role in Project Turnover Meetings"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_794dda95-c86e-4575-90dd-6d5fe9b34268",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.1929769366979599,
+      "preferred_skill_score": null,
+      "overall_mandatory": 0.1929769366979599,
+      "overall_preferred": null,
+      "overall_score": 0.1929769515991211,
+      "overall_skills": 0.1929769366979599,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  },
+  {
+    "details": {
+      "wage": [
+        {
+          "max": 100000,
+          "min": 100000,
+          "pay_type": "Salary",
+          "wage_city": [
+            "San Francisco"
+          ],
+          "wage_state": [
+            "CA"
+          ]
+        }
+      ],
+      "benefits": {
+        "fsa": false,
+        "hsa": false,
+        "bonus": true,
+        "other": [],
+        "dental": false,
+        "equity": false,
+        "vision": false,
+        "medical": false,
+        "401k_match": false,
+        "mental_health": false,
+        "unlimited_pto": false,
+        "tuition_reimbursement": false
+      },
+      "location": [
+        {
+          "city": "San Francisco",
+          "state": "CA",
+          "country": "US"
+        }
+      ],
+      "job_title": [
+        "Technology Sales Manager"
+      ],
+      "tax_terms": [
+        "Direct-hire"
+      ],
+      "wfh_policy": [],
+      "company_name": [],
+      "company_stage": [],
+      "work_schedule": [],
+      "job_title_base": [
+        "Sales Manager"
+      ],
+      "employment_type": [
+        "Full-time"
+      ],
+      "travel_required": {
+        "required": false,
+        "hours_weekly": 0
+      },
+      "company_industry": [],
+      "experience_level": [
+        "Senior"
+      ],
+      "work_authorization": []
+    },
+    "mandatory": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "selling business solutions",
+              "Analytics"
+            ],
+            [
+              "selling business solutions",
+              "Salesforce"
+            ],
+            [
+              "selling business solutions",
+              "Community Management"
+            ],
+            [
+              "selling business solutions",
+              "Marketing Automation"
+            ],
+            [
+              "selling business solutions",
+              "Microsoft Services"
+            ],
+            [
+              "selling business solutions",
+              "large enterprise customers"
+            ],
+            [
+              "selling business solutions",
+              "global enterprise customers"
+            ]
+          ],
+          "minyears": [
+            8
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Track record",
+              "software sales"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Track record",
+              "business development"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Track record",
+              "account management"
+            ]
+          ],
+          "minyears": [
+            0
+          ]
+        }
+      ],
+      "professional_background": []
+    },
+    "preferred": {
+      "education": [],
+      "credentials": [],
+      "hard_skills": [],
+      "professional_background": []
+    },
+    "responsibility": {
+      "hard_skills": [
+        {
+          "skill": [
+            [
+              "Develop a Go-to-Market Sales Plan"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Actively explore new opportunities",
+              "business growth"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "acquiring new accounts"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "generating revenue",
+              "the Enterprise segment"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Build a robust portfolio",
+              "prospects"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "drive sales growth"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Obtain new customers",
+              "various Professional services"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "exploring similar opportunities",
+              "our client base"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Execute sales goals"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "provide timely submission",
+              "pipeline reports"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "provide timely submission",
+              "forecasts"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "Assist in developing marketing plans"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "target a diverse set",
+              "potential customers"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "generate qualified leads"
+            ]
+          ]
+        },
+        {
+          "skill": [
+            [
+              "generate qualified opportunities"
+            ]
+          ]
+        }
+      ]
+    },
+    "job_id": "job_a19af6ea-09ff-4d3e-874e-88fe4ad2b8db",
+    "match_scores": {
+      "responsibilities_score": null,
+      "mandatory_skill_score": 0.07496354728937149,
+      "preferred_skill_score": null,
+      "overall_mandatory": 0.07496354728937149,
+      "overall_preferred": null,
+      "overall_score": 0.07496354728937149,
+      "overall_skills": 0.07496354728937149,
+      "overall_education": null,
+      "overall_background": null,
+      "overall_credentials": null
+    }
+  }
+]

@@ -18,12 +18,28 @@ function loadJoblist() {{
         html += "<div class='job-row'>";
         html += "<a href='javascript:void(0);' target='_self' class='job-detail-link' onClick='document.querySelector(\"iframe\").contentWindow.loadAJob(" + index + ")'>";
         html += "<div class='job-title'>" + details['job_title_base'].join('<br>') + "</div>";
-        html += "<div class='job-company'>at " + details['company_name'].join('<br>') + "</div>";
+        if(details['company_name'] && details['company_name'].length > 0) {{
+            html += "<div class='job-company'>at " + details['company_name'].join('<br>') + "</div>";
+        }}
         const locationAry = [];
         for(const location of details['location']) {{
-            locationAry.push(location['city'] + ", " + location['state']);
+            if(location['city'] || location['state']) {{
+                let loc = [];
+                if(location['city']) {{
+                    loc.push(location['city']);
+                }}
+                if(location['state']) {{
+                    loc.push(location['state']);
+                }}
+                locationAry.push(loc.join(", "));
+            }}
         }}
-        html += "<div class='job-location'>Location: " + locationAry.join('<br>') + "</div>";
+        let locationStr = 'N/A';
+        if(locationAry.length > 0) {
+            locationStr = locationAry.join("<br>");
+        }
+
+        html += "<div class='job-location'>Location: " + locationStr + "</div>";
         const overall_score = Math.trunc(job['match_scores']['overall_score']*100).toLocaleString('en-US');
         html += "<div class='job-scores'>Overall Scores: " + overall_score + "</div>";
         html += "</a>";
@@ -54,7 +70,11 @@ function loadAJob(index) {{
         const details = job["details"]
         const mandatory = job["mandatory"]
         const preferred = job["preferred"]
-        html += "<h3>" + details['job_title_base'].join(", ") + " at " + details['company_name'].join(", ") + "</h3>";
+        let company_name = "";
+        if(details['company_name'] && details['company_name'].length > 0) {{
+            company_name = " at " + details['company_name'].join('<br>');
+        }}
+        html += "<h3>" + details['job_title_base'].join(", ") + company_name + "</h3>";
         if("overall_score" in score && score["overall_score"]) {{
             html += "<div class='overall_score_header'>✅ Overall = " + Math.trunc(score["overall_score"]*100).toLocaleString('en-US') + "%</div>"
         }}
@@ -81,14 +101,29 @@ function loadAJob(index) {{
         html += "</div></div>";
         const locationAry = [];
         for(const location of details['location']) {{
-            locationAry.push(location['city'] + ", " + location['state']);
+            if(location['city'] || location['state']) {{
+                let loc = [];
+                if(location['city']) {{
+                    loc.push(location['city']);
+                }}
+                if(location['state']) {{
+                    loc.push(location['state']);
+                }}
+                locationAry.push(loc.join(", "));
+            }}
         }}
+        let locationStr = 'N/A';
+        if(locationAry.length > 0) {
+            locationStr = locationAry.join("; ");
+        }
 
-        html += "<div id='job-location'><span id='location-label'>Location:</span> " + locationAry.join("<br>") + "</div>";
-
-        html += getDetails(mandatory, "👍🏼 Mandatory");
-        html += getDetails(preferred, "👏🏼 Preferred");
-
+        html += "<div id='job-location'><span id='location-label'>Location:</span> " + locationStr + "</div>";
+        if(score["overall_mandatory"]) {{
+            html += getDetails(mandatory, "👍🏼 Mandatory");
+        }}
+        if(score["overall_preferred"]) {{
+            html += getDetails(preferred, "👏🏼 Preferred");
+        }}
     }} else {{
         html = "";
     }}
@@ -121,7 +156,7 @@ function getScoreHtml(data, prefix) {
 function getDetails(data, title) {{
     let html = '';
     if(data) {{
-        html += "<h3>" + title + " Qualificatoins</h3>";
+        html += "<h3>" + title + " Qualifications</h3>";
         const hard_skills = data["hard_skills"];
 
         if(hard_skills) {{
@@ -142,7 +177,18 @@ function getDetails(data, title) {{
             }}
         }}
         if("education" in data && data["education"].length > 0) {{
-            html += "<div class='skill-item'><span class='skill-title'>Education:</span> " + data["education"].flat().join(", ") + "</div>";
+            const education = data["education"][0];
+            console.log(education);
+            // related field, education level
+            if("education_level" in education && education["education_level"].length > 0) {{
+                let edu_level = education["education_level"].flat().join(", ");
+                let fields = "";
+                if("field_of_study" in education && education["field_of_study"].length > 0) {{
+                    fields = " in " + education["field_of_study"].flat().join(", ") + " Field";
+                }}
+                html += "<div class='skill-item'><span class='skill-title'>Education:</span> " + edu_level + fields + "</div>";    
+            }}
+            
         }}
     }}
 

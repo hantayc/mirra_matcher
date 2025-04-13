@@ -13,11 +13,11 @@ def main():
     st.markdown(com.loadFont(), unsafe_allow_html=True)
     com.includeCss(st, 'match.css')
     st.session_state["disabled"] = False
-    matches = json.loads('[]')
-    if 'matches' in st.session_state:
-        matches = st.session_state['matches']
-    else:
-        matches = com.read_json_result('match_result.json')
+    # matches = json.loads('[]')
+    # if 'matches' in st.session_state:
+    #     matches = st.session_state['matches']
+    # else:
+    matches = com.read_json_result('match_result.json')
 
     matches_str = json.dumps(matches)
     header = st.container(key='match-header')
@@ -43,7 +43,7 @@ def main():
         if matches_str:
             js_call = f"""
                 window.onload = () => {{
-                    const jsonData = JSON.parse({matches_str});
+                    const jsonData = {matches_str};
                     handleData(jsonData);
                 }};
                 """

@@ -1,6 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from functools import reduce
 from pinecone import Pinecone
+import numpy as np
 
 # Imports
 from match_alogorithm.utils.mandatory_skill_score import calculate_mandatory_skill_scores
@@ -50,6 +51,17 @@ def process_stage2(job_chunk, candidate_resume_JSON):
         threshold=0.5,
     )
     return merged_chunk
+
+# Covert Back to Scalar
+def convert_numpy_scalars(obj):
+    if isinstance(obj, dict):
+        return {k: convert_numpy_scalars(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_numpy_scalars(item) for item in obj]
+    elif isinstance(obj, np.generic):
+        return obj.item()
+    else:
+        return obj    
 
 ###############################################################################
 # Main Function: Calculate Match Score
@@ -255,15 +267,22 @@ def calculate_match_score(job_desc_json_lst, candidate_resume_JSON, parallel_pro
             print(f"[calculate_match_score] Attached match_scores for job_id: {job_id}")
 
     print("[calculate_match_score] Sorting results by overall match score...")
-    print(match_results)
+    # Filter out any None values from match_results, if needed.
+    match_results = [job for job in match_results if job.get("match_scores", {}).get("overall_score") is not None]
+    
     match_results = sorted(
         match_results,
         key=lambda x: x.get("match_scores", {}).get("overall_score", 0),
         reverse=True,
     )
 
+    converted_match_results = convert_numpy_scalars(match_results)
+    # print(converted_match_results)
+    # Optionally, if you want to check which jobs ended up with None, you could print error_job:
+    error_job = [job for job in match_results if job is None]
+
     print("[calculate_match_score] DONE. Returning results.")
-    return match_results
+    return converted_match_results
 
 ###############################################################################
 # MAIN
