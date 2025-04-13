@@ -81,7 +81,7 @@ def get_all_records(df):
     job_list = json.loads('[]')
 
     for index, row in df.iterrows():
-        post_json = json.loads(row['extracted'].replace("'", "\"").replace("True", "true").replace("False", "false"))
+        post_json = json.loads(row['extracted'].replace("True", "true").replace("False", "false"))
         post_json['job_id'] = f"job_{row['id']}"
         job_list.append(post_json)
 
@@ -135,7 +135,7 @@ def find_record_by_id(target_id, df):
     record = df[df['id'] == target_id].squeeze()
     if record.empty:
         return None
-    return record['extracted'].replace("'", "\"").replace("True", "true").replace("False", "false")
+    return record['extracted'].replace("True", "true").replace("False", "false")
     
 def getJob(job, isSelected):
     details = job["details"]
