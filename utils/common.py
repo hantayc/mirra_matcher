@@ -69,9 +69,11 @@ def find_record_by_ids(vdb_list, file_path):
     if vdb_list:
         for job in vdb_list:
             job_id = job['id']
-            post_json = json.loads(find_record_by_id(job_id[4:], df))
-            post_json['job_id'] = job_id
-            job_list.append(post_json)
+            extracted = find_record_by_id(job_id[4:], df)
+            if extracted:
+                post_json = json.loads(find_record_by_id(job_id[4:], df))
+                post_json['job_id'] = job_id
+                job_list.append(post_json)
     else:
         job_list = get_all_records(df)
 
@@ -111,9 +113,11 @@ def find_record_by_ids_from_s3(vdb_list, bucket, key):
     if vdb_list:    
         for job in vdb_list:
             job_id = job['id']
-            post_json = json.loads(find_record_by_id(job_id[4:], df))
-            post_json['job_id'] = job_id
-            job_list.append(post_json)
+            extracted = find_record_by_id(job_id[4:], df)
+            if extracted:
+                post_json = json.loads(find_record_by_id(job_id[4:], df))
+                post_json['job_id'] = job_id
+                job_list.append(post_json)
     else:
         job_list = get_all_records(df)
 
