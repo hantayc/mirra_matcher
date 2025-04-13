@@ -2,6 +2,9 @@ import streamlit as st
 import utils.common as com
 
 members = [{
+    "pic": "cyrus.jpg",
+    "bio": "Cyrus led product design, development, and strategy for MIRRA. This work involved model training, design optimizations, and performance evaluation, with the unified goal of streamlining the job searching process."
+},{
     "pic": "tay.jpg",
     "bio": "Hi all! I'm Tay, and I've been leading the implementation of MIRRA's matching algorithm. My goal is simple: to make the job search process smarter, fairer, and more transparent—for everyone. Whether you're switching industries, reentering the workforce, or searching for that next big opportunity, MIRRA is here to help illuminate your path. As we continue building this platform—and aim to integrate our intelligence into the systems used by recruiters and hiring leaders—I'm excited to help bridge the gap between potential and opportunity. I'm currently wrapping up my master’s in Information and Data Science at UC Berkeley, and I work as a Data Scientist focused on data governance—ensuring organizations use their data responsibly, consistently, and effectively. Thanks for stopping by. I'm so glad you’re here, and I hope MIRRA helps you get one step closer to your dream role."
 },{
@@ -13,9 +16,6 @@ members = [{
 },{
     "pic": "yong.jpg",
     "bio": "Yong is an application lead for MIRRA, a capstone project at UC Berkeley. Yong plays a key role in integrating backend and frontend code, overseeing AWS setup and monitoring, and managing the entire development process. With a software engineering and consulting experiance, he brings extensive knowledge in building scalable systems, designing efficient workflows, and delivering client-focused solutions."
-},{
-    "pic": "cyrus.jpg",
-    "bio": "uhiurehgidurhgdiurhfuidrhfiushfuisehfusihfusihdfusihfisuhfsuidfhsiudfhsdiuhfsdiufhsidufhsdiufhsudifhsiudfhsiudfhsiufhsiudhfsudifhsidufhsiudfhsiudfhisduhfisduhfsdiufhsiudfhisudfhsiudfhsduifh."
 }]
 
 # Streamlit app

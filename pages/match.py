@@ -13,13 +13,10 @@ def main():
     st.markdown(com.loadFont(), unsafe_allow_html=True)
     com.includeCss(st, 'match.css')
     st.session_state["disabled"] = False
-    # matches = json.loads('[]')
-    # if 'matches' in st.session_state:
-    #     matches = st.session_state['matches']
-    # else:
-    matches = com.read_json_result('match_result.json')
+    matches = json.loads('[]')
+    if 'matches' in st.session_state:
+        matches = st.session_state['matches']
 
-    matches_str = json.dumps(matches)
     header = st.container(key='match-header')
     body = st.container(key='match-body')
     _, left, middle, _ = body.columns([1,2,4,1])
@@ -40,15 +37,15 @@ def main():
 
     with middle:
         middle.container(height=620, border=True, key="match-middle-container")
-        if matches_str:
+        if matches:
             js_call = f"""
                 window.onload = () => {{
-                    const jsonData = {matches_str};
+                    const jsonData = {matches};
                     handleData(jsonData);
                 }};
                 """
             
-            com.logger(com.include_js_file('match.js', js_call))
+            # com.logger(com.include_js_file('match.js', js_call))
             components.html(com.include_js_file('match.js', js_call), height=0)
             # st.session_state['matches'] = matches
 

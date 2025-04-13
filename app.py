@@ -151,7 +151,7 @@ def main():
                     else:
                         matches = calculate_match_score(job_desc_json_lst=job_list, candidate_resume_JSON=resume, parallel_processing=True)
                     com.logger(type(matches))
-                    com.logger(matches)
+                    com.logger(len(matches))
                     if matches:
                         matches = json.dumps(matches)
                         st.session_state['matches'] = matches
