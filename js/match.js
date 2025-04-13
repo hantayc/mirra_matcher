@@ -129,6 +129,7 @@ function loadAJob(index) {{
     }}
 
     right_pane.innerHTML = html;
+    right_pane.parentElement.parentElement.scrollTop = 0;
 }}
 
 function getScoreHtml(data, prefix) {
