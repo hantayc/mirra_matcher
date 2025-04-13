@@ -11,7 +11,7 @@ def read_city_state_data():
     data = pd.read_csv('./data/uscities.txt', sep='\t')
     if "city" in data.columns and "state_name" in data.columns:
         # Create a list of strings in the format "City, State"
-        city_state_list = [f"{row['city']}, {row['state_name']}" for _, row in data.iterrows()]
+        city_state_list = [f"{row['city']}, {row['state_id']}" for _, row in data.iterrows()]
         city_state_list.insert(0, "")
     else:
         city_state_list = [""]
@@ -116,7 +116,7 @@ def main():
     if domain:
         filter_dict['domain'] = {'$eq': domain}        
     if location:
-        filter_dict['location'] = {'$eq': location} 
+        filter_dict['location'] = {'$eq': location + ", US"} 
     if salary_range_from and salary_range_from != salary_range_to:
         filter_dict['salary_range_from'] = {'$gte': salary_range_from}        
     if salary_range_to and salary_range_from != salary_range_to:
