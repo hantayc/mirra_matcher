@@ -6,6 +6,7 @@ import os
 from io import BytesIO
 import sys
 import fitz  # PyMuPDF
+import json
 
 home_directory = os.path.dirname(os.path.abspath(sys.argv[0])) 
 def includeCss(st, filename):
@@ -80,7 +81,7 @@ def get_all_records(df):
     job_list = json.loads('[]')
 
     for index, row in df.iterrows():
-        post_json = json.loads(row['extracted'])
+        post_json = json.loads(row['extracted'].replace("'", "\"").replace("True", "true").replace("False", "false"))
         post_json['job_id'] = f"job_{row['id']}"
         job_list.append(post_json)
 
@@ -134,7 +135,7 @@ def find_record_by_id(target_id, df):
     record = df[df['id'] == target_id].squeeze()
     if record.empty:
         return None
-    return record['extracted']
+    return record['extracted'].replace("'", "\"").replace("True", "true").replace("False", "false")
     
 def getJob(job, isSelected):
     details = job["details"]
@@ -151,8 +152,6 @@ def getJob(job, isSelected):
     logger(job_html)
 
     return job_html
-
-import json
 
 def find_record_by_jobid(json_data, job_id):
     """
