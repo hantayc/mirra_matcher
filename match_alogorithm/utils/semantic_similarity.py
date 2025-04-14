@@ -1,7 +1,8 @@
+import traceback
 import torch
 from sentence_transformers import util
 from concurrent.futures import ThreadPoolExecutor, TimeoutError
-
+import unicodedata
 from match_alogorithm.init_pinecone import pinecone_index, embedding_cache
 
 from utils.embeddings import EmbeddingGenerator
@@ -17,24 +18,37 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 PINECONE_FETCH_TIMEOUT = 30  # seconds
 
+def ascii_only(text: str) -> str:
+    """
+    Normalize and remove non-ASCII characters from the text.
+    """
+    return unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('ascii')
+
 def get_embedding(text: str):
     """
     Return the embedding of 'text' from:
-    1) local cache (if available),
-    2) Pinecone (if fetchable by ID),
-    3) otherwise, call your SageMaker endpoint via EmbeddingGenerator.
+      1) local cache (if available),
+      2) Pinecone (if fetchable by ID),
+      3) Otherwise, call your SageMaker endpoint via embedder.generate_embeddings.
+      
+    This version sanitizes the vector ID so that only ASCII characters are used.
     """
+    if isinstance(text, list):
+        text = " ".join(text)
+        
     text = text.strip()
+    # Sanitize the text into an ASCII-only string to use as the vector ID.
+    safe_id = ascii_only(text)
 
-    # Check local cache first
-    if text in embedding_cache:
-        return embedding_cache[text]
+    # Check local cache first using safe_id.
+    if safe_id in embedding_cache:
+        return embedding_cache[safe_id]
 
     fetch_result = None
-    # Attempt to fetch from Pinecone with a timeout
+    # Attempt to fetch from Pinecone with a timeout, using safe_id.
     if pinecone_index is not None:
         def fetch_pinecone_vector():
-            return pinecone_index.fetch(ids=[text])
+            return pinecone_index.fetch(ids=[safe_id])
         
         with ThreadPoolExecutor(max_workers=1) as executor:
             future = executor.submit(fetch_pinecone_vector)
@@ -49,16 +63,16 @@ def get_embedding(text: str):
     if not fetch_result or not fetch_result.vectors:
         emb_list = embedder.generate_embeddings([text])  # returns list of lists
         if emb_list and len(emb_list) > 0:
-            emb_tensor = torch.tensor(emb_list[0], device=device)
+            emb_tensor = torch.tensor(emb_list[0], device=device, dtype=torch.float32)
         else:
-            emb_tensor = torch.zeros(embedder.embedding_dimension, device=device)
+            emb_tensor = torch.zeros(embedder.embedding_dimension, device=device, dtype=torch.float32)
         
-        embedding_cache[text] = emb_tensor
+        embedding_cache[safe_id] = emb_tensor
         return emb_tensor
     else:
-        fetched_vector = fetch_result.vectors[text].values
-        emb_tensor = torch.tensor(fetched_vector, device=device)
-        embedding_cache[text] = emb_tensor
+        fetched_vector = fetch_result.vectors[safe_id].values
+        emb_tensor = torch.tensor(fetched_vector, device=device, dtype=torch.float32)
+        embedding_cache[safe_id] = emb_tensor
         return emb_tensor
 
 # No Pinecone Leverage

@@ -33,6 +33,6 @@ class PineconeDatabase:
         
     def search(self, keyword, filters):
         query_embedding = self.embedder.generate_embeddings([keyword])[0]
-        search_results = self.index.query(vector=query_embedding, filter=filters, top_k=100, include_metadata=False)
+        search_results = self.index.query(vector=query_embedding, filter=filters, top_k=200, include_metadata=False)
 
         return search_results['matches']

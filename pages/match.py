@@ -14,8 +14,10 @@ def main():
     com.includeCss(st, 'match.css')
     st.session_state["disabled"] = False
     matches = json.loads('[]')
-    if 'matches' in st.session_state:
-        matches = st.session_state['matches']
+    # if 'matches' in st.session_state:
+    #     matches = st.session_state['matches']
+    matches = json.dumps(com.read_json_result('match_result.json'))
+    com.logger(matches)
 
     header = st.container(key='match-header')
     body = st.container(key='match-body')
@@ -45,7 +47,7 @@ def main():
                 }};
                 """
             
-            # com.logger(com.include_js_file('match.js', js_call))
+            com.logger(com.include_js_file('match.js', js_call))
             components.html(com.include_js_file('match.js', js_call), height=0)
             # st.session_state['matches'] = matches
 

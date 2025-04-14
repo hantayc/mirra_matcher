@@ -1,11 +1,32 @@
 let matching_data = null;
 function handleData(data) {{
+    data.sort(function(a, b) {{
+        // Sort by value (descending)
+        const valueA = a["match_scores"]["overall_score"];
+        const valueB = b["match_scores"]["overall_score"];
+
+        if (valueB !== valueA) {{
+            return (valueB ?? -Infinity) - (valueA ?? -Infinity); // Nulls/undefined at the end
+        }}
+
+        // If values are equal, sort by date (descending, nulls last)
+        const dateA = a["posted_date"];
+        const dateB = b["posted_date"];
+
+        if (dateA === null && dateB === null) return 0;
+        if (dateA === null) return 1;
+        if (dateB === null) return -1;
+
+        return new Date(dateB) - new Date(dateA);
+    }});
+    
     matching_data = data;
     console.log("Received JSON data:", matching_data);
     const parentDocument = window.parent.document;
     parentDocument.getElementById('num_of_result').innerHTML = matching_data.length;
     loadJoblist();
 }}
+
 
 function loadJoblist() {{
     const parentDocument = window.parent.document;
@@ -75,9 +96,17 @@ function loadAJob(index) {{
         const mandatory = job["mandatory"]
         const preferred = job["preferred"]
         const web_url = job["web_url"]
+        let post_dt = job["posted_date"]
+        console.log(post_dt);
+        if(post_dt && post_dt != undefined) {{
+            post_dt = 'Posted Date: ' + post_dt;
+            console.log(post_dt);
+        }} else {
+            post_dt = '&nbsp;';
+        }
         if(web_url) {{
             console.log(web_url);
-            html += "<div id='apply_now'><button onclick=document.querySelector(\"iframe\").contentWindow.applyJob(" + index + ")>Appy Now</button></div>";
+            html += "<div class='apply-row'><div class='apply-column'>" + post_dt + "</div><div class='apply-column apply-button'><button onclick=document.querySelector(\"iframe\").contentWindow.applyJob(" + index + ")>Appy Now</button></div></div>";
         }}
         let company_name = "";
         if(details['company_name'] && details['company_name'].length > 0) {{

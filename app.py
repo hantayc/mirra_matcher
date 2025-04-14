@@ -142,7 +142,7 @@ def main():
                     else:
                         com.logger("### Loading posting files...")    
                         job_list = com.find_record_by_ids(response, st.secrets.aws.path)
-                    # print(job_list)
+                    # print(json.dumps(job_list))
                     resume = st.session_state['resume_json']
                     com.logger(type(job_list))
                     com.logger(type(resume))

@@ -301,11 +301,7 @@ li.score_item, li.skill-item, div.skill-item {
     clear: both;
 }
 
-#apply_now {
-    text-align: right;
-}
-
-#apply_now button {
+.apply-column button {
     display: inline-flex;
     -webkit-box-align: center;
     align-items: center;
@@ -328,7 +324,23 @@ li.score_item, li.skill-item, div.skill-item {
     border: 1px solid rgba(49, 51, 63, 0.2);
 }
 
-#apply_now button:hover {
+.apply-column button:hover {
     border-color: rgb(255, 75, 75);
     color: rgb(255, 75, 75);
+}
+
+.apply-column {
+    float: left;
+    width: 50%;
+}
+  
+  /* Clear floats after the columns */
+.apply-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.apply-button {
+    text-align: right;
 }

@@ -69,11 +69,12 @@ def find_record_by_ids(vdb_list, file_path):
     if vdb_list:
         for job in vdb_list:
             job_id = job['id']
-            extracted = find_record_by_id(job_id[4:], df)
+            extracted, web_url, post_dt = find_record_by_id(job_id[4:], df)
             if extracted:
                 post_json = json.loads(extracted)
                 post_json['job_id'] = job_id
-                post_json['job_id'] = job_id
+                post_json['web_url'] = web_url
+                post_json['posted_date'] = post_dt
                 job_list.append(post_json)
     else:
         job_list = get_all_records(df)
@@ -87,6 +88,7 @@ def get_all_records(df):
         post_json = json.loads(row['extracted_cleaned'].replace("True", "true").replace("False", "false"))
         post_json['job_id'] = f"job_{row['id']}"
         post_json['web_url'] = row['web_url']
+        post_json['posted_date'] = row['posted_date'].dt.strftime('%m/%d/%Y')
         job_list.append(post_json)
 
     return job_list
@@ -115,11 +117,12 @@ def find_record_by_ids_from_s3(vdb_list, bucket, key):
     if vdb_list:    
         for job in vdb_list:
             job_id = job['id']
-            extracted, web_url = find_record_by_id(job_id[4:], df)
+            extracted, web_url, post_dt = find_record_by_id(job_id[4:], df)
             if extracted:
                 post_json = json.loads(extracted)
                 post_json['job_id'] = job_id
                 post_json['web_url'] = web_url
+                post_json['posted_date'] = post_dt
                 job_list.append(post_json)
     else:
         job_list = get_all_records(df)
@@ -128,21 +131,37 @@ def find_record_by_ids_from_s3(vdb_list, bucket, key):
 
 def find_record_by_id(target_id, df):
     """
-    Reads data from an Excel file, and finds a record by ID.
+    Finds a record by ID in a given DataFrame.
 
     Args:
-        file_path (str): The path to the Excel file.
-        sheet_name (str): The name of the sheet to read.
-        id_column_name (str): The name of the column containing the IDs.
         target_id: The ID to search for.
+        df (pandas.DataFrame): The DataFrame containing the data.
 
     Returns:
-        pandas.Series or None: The record as a pandas Series if found, otherwise None.
+        tuple or None: A tuple containing 'extracted_cleaned', 'web_url', and 'posted_date' 
+        if the record is found; otherwise, None.
     """
-    record = df[df['id'] == target_id].squeeze()
+    # Filter the DataFrame for the record with the matching ID
+    record = df[df['id'] == target_id]
+
+    # If the record is empty, return None
     if record.empty:
         return None
-    return record['extracted_cleaned'].replace("True", "true").replace("False", "false"), record['web_url']
+
+    # Extract the first record (in case there are duplicates)
+    record = record.iloc[0]
+
+    # Handle NaT values in 'posted_date'
+    if pd.isna(record['posted_date']):
+        posted_date = None  # Or you can return a default value like 'Unknown'
+    else:
+        posted_date = pd.to_datetime(record['posted_date']).strftime('%m/%d/%Y')
+
+    # Clean up the 'extracted_cleaned' value
+    extracted_cleaned = record['extracted_cleaned'].replace("True", "true").replace("False", "false")
+
+    # Return the desired values
+    return extracted_cleaned, record['web_url'], posted_date
     
 def getJob(job, isSelected):
     details = job["details"]
