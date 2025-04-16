@@ -20,7 +20,7 @@ class EmbeddingGenerator:
         # Initialize SageMaker runtime client
         self.client = boto3.client(
             "sagemaker-runtime",
-            region_name=st.secrets["aws"]["region"],
+            region_name=st.secrets["pinecone"]["aws_region"],
             aws_access_key_id=st.secrets["aws"]["access_key_id"],
             aws_secret_access_key=st.secrets["aws"]["secret_access_key"]
         )
