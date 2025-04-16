@@ -7,6 +7,7 @@ from io import BytesIO
 import sys
 import fitz  # PyMuPDF
 import json
+import streamlit as st
 
 home_directory = os.path.dirname(os.path.abspath(sys.argv[0])) 
 def includeCss(st, filename):
