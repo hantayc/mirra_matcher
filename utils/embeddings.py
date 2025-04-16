@@ -1,6 +1,7 @@
 import boto3
 import json
 import numpy as np
+import streamlit as st
 
 class EmbeddingGenerator:
     """Class for embedding generation using SageMaker endpoint"""
