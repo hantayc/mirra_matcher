@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 from openai import OpenAI
+import streamlit as st
 
 class resume_extractor:
     def __init__(self, api_key):
