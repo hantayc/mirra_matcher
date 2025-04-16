@@ -4,6 +4,7 @@ from openai import OpenAI
 
 class resume_extractor:
     def __init__(self, api_key):
+        api_key = st.secrets["openai"]["api_key"]
         self.current_month_year = datetime.now().strftime("%B %Y")
         self.client = OpenAI(api_key =api_key)
         print("Resume extractor is loaded...")
