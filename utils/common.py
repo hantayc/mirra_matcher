@@ -104,7 +104,11 @@ def read_excel_from_s3(bucket, key):
     """
     Helper function that reads an Excel file from S3 into a Pandas DataFrame.
     """
-    s3 = boto3.client('s3')
+    s3 = boto3.client(
+        "s3",
+        aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID", st.secrets["aws"]["access_key_id"]),
+        aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY", st.secrets["aws"]["secret_access_key"])
+    )
     response = s3.get_object(Bucket=bucket, Key=key)
     # response['Body'] is a stream; wrap it with BytesIO before passing to pandas
     return pd.read_excel(BytesIO(response['Body'].read()))
